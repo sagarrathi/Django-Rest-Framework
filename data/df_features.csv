@@ -1,0 +1,62 @@
+,colname,total_unique_values,unique_ratio,high,low,dtype,prediction
+0,Cst_Cnt,34404,100.0,34404,1,int64,feature
+1,Cruise_ID,645,1.87,na,na,object,category
+2,Cruise,376,1.09,201611,194903,int64,int category
+3,Cruz_Sta,30851,89.67,20161109340264,19490304901140,int64,feature
+4,DbSta_ID,2634,7.66,17670300,101680,int64,int category
+5,Cast_ID,34404,100.0,na,na,object,primary key
+6,Sta_ID,2634,7.66,na,na,object,category
+7,Quarter,4,0.01,4,1,int64,int category
+8,Sta_Code,7,0.02,na,na,object,category
+9,Distance,9351,27.18,-0.141,-1920.15,float64,feature
+10,Date,6466,18.79,na,na,object,datetime
+11,Year,67,0.19,2016,1949,int64,int category
+12,Month,12,0.03,12,1,int64,int category
+13,Julian_Date,6232,18.11,41116,17957,int64,feature
+14,Julian_Day,353,1.03,354,2,int64,int category
+15,Time,2731,7.94,na,na,object,datetime
+16,Lat_Dec,5601,16.28,47.916666,18.416666,float64,feature
+17,Lat_Deg,30,0.09,47,18,int64,int category
+18,Lat_Min,1817,5.28,59.9,0.0,float64,feature
+19,Lat_Hem,1,0.0,na,na,object,category
+20,Lon_Dec,5972,17.36,-105.966666,-164.083333,float64,feature
+21,Lon_Deg,49,0.14,-105,-164,int64,int category
+22,Lon_Min,1834,5.33,59.936,0.0,float64,feature
+23,Lon_Hem,1,0.0,na,na,object,category
+24,Rpt_Line,675,1.96,176.7,1.0,float64,feature
+25,St_Line,327,0.95,1734.0,1.0,float64,feature
+26,Ac_Line,1124,3.27,176.5,0.0,float64,feature
+27,Rpt_Sta,842,2.45,531.1,0.1,float64,feature
+28,St_Station,456,1.33,531.0,0.5,float64,feature
+29,Ac_Sta,1607,4.67,531.1,-30.6,float64,feature
+30,Bottom_D,3531,10.26,8230.0,7.0,float64,feature
+31,Secchi,55,0.16,58.0,1.0,float64,feature
+32,ForelU,15,0.04,21.0,1.0,float64,feature
+33,Ship_Name,34,0.1,na,na,object,category
+34,Ship_Code,33,0.1,na,na,object,category
+35,Data_Type,5,0.01,na,na,object,category
+36,Order_Occ,442,1.28,3003.0,1.0,float64,feature
+37,Event_Num,4805,13.97,30022.0,1.0,float64,feature
+38,Cruz_Leg,5,0.01,3.0,0.0,float64,feature
+39,Orig_Sta_ID,4190,12.18,na,na,object,unknown
+40,Data_Or,6,0.02,na,na,object,category
+41,Cruz_Num,380,1.1,na,na,object,category
+42,IntChl,1711,4.97,1043.2,2.4,float64,feature
+43,IntC14,1811,5.26,5946.4,29.5,float64,feature
+44,Inc_Str,116,0.34,na,na,object,datetime
+45,Inc_End,201,0.58,na,na,object,datetime
+46,PST_LAN,80,0.23,na,na,object,datetime
+47,Civil_T,182,0.53,na,na,object,datetime
+48,TimeZone,2,0.01,8.0,8.0,float64,feature
+49,Wave_Dir,39,0.11,49.0,0.0,float64,feature
+50,Wave_Ht,26,0.08,40.0,0.0,float64,feature
+51,Wave_Prd,29,0.08,50.0,0.0,float64,feature
+52,Wind_Dir,39,0.11,37.0,0.0,float64,feature
+53,Wind_Spd,50,0.15,71.0,0.0,float64,feature
+54,Barometer,334,0.97,1112.6,101.4,float64,feature
+55,Dry_T,221,0.64,43.1,1.7,float64,feature
+56,Wet_T,202,0.59,58.0,1.8,float64,feature
+57,Wea,11,0.03,9.0,0.0,float64,feature
+58,Cloud_Typ,11,0.03,9.0,0.0,float64,feature
+59,Cloud_Amt,11,0.03,9.0,0.0,float64,feature
+60,Visibility,11,0.03,9.0,0.0,float64,feature
