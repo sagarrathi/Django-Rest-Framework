@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "7ad8df6e-c467-48fc-8e41-25d634e93f98",
+		"name": "Stores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/store",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"store"
+					]
+				},
+				"description": "Get stores"
+			},
+			"response": []
+		},
+		{
+			"name": "/store/<store_name>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/store/office",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"store",
+						"office"
+					]
+				},
+				"description": "Get stores"
+			},
+			"response": []
+		},
+		{
+			"name": "/store/<store_name>/item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/store/office/item",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"store",
+						"office",
+						"item"
+					]
+				},
+				"description": "Get stores"
+			},
+			"response": []
+		},
+		{
+			"name": "/store {data:store_name}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"dorm\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/store",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "home",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Get stores"
+			},
+			"response": []
+		},
+		{
+			"name": "/store/store_name/item {data:item_name}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"water_jug\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/store/office/item",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"store",
+						"office",
+						"item"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "Get stores"
+			},
+			"response": []
+		}
+	]
+}
