@@ -1,0 +1,25 @@
+/* comments */
+h1{
+    color:rgb(112, 40, 12);
+}
+
+h2{
+    color:rgb(160, 73, 39);
+}
+
+h3{
+    color:rgb(233, 82, 22);
+}
+
+
+li{
+    color:rgb(76, 173, 19);
+}
+
+p{
+    color:blueviolet;
+}
+
+.btn.btn-success{
+    color:chocolate;
+}
