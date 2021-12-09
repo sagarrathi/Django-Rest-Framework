@@ -3,166 +3,261 @@
         <title>``Conde Naste``</title>
         <!-- <link  rel="stylesheet" href="index.css"> -->
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    </head>
-    <body>
-
-        <div class="container">
-            
-            <h1>Example: Form</h1>
-            <form action="index.html" method="get">
-                <fieldset class="form-control">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
-
-                <div class="form-group">
-                    <label for="country"> Enter Country Name:</label>
-                    <input id="country" class="form-control" type="text"  name="country_name" placeholder="country">
-                </div>
-
-                <div class="form-group">
-                    <input type="week" class="form-control" name="country" placeholder="" >
-                </div>
-
-                <h2>Enter Email Id and Password</h2>
-
-                <div class="form-group">
-                    <input type="email"  class="form-control" name="email" placeholder="email">
-                </div>
- 
-                    <input type="password" name="password" placeholder="">
-                <h2>Do you like our service?</h2>
-                <label for="likeit">Like It:</label>
-                <input id="likeit" type="radio" name="likeitbutton">
-                <label for="notlikeit">Not Like It:</label>
-                <input id="notlikeit" type="radio" name="likeitbutton">
         
-
-                <h2>Rate our service</h2>
-                
-                <div class="form-group">
-                    <select class="form-control" name="rating">
-                        <option value="Great">3</option>
-                        <option value="Okay">2</option>
-                        <option value="Bad">1</option>
-                    </select>
-                </div>
+    </head>
+    <style>
+        .boxy {
+            background-color: blanchedalmond;
+            border: 2px solid black;
+        }
+    </style>
 
 
-                <div class="form-group">
-                    <select multiple class="form-control" name="rating">
-                        <option value="Great">3</option>
-                        <option value="Okay">2</option>
-                        <option value="Bad">1</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy" >Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+        </div>
 
-                <h3>Upload File</h3>
-                <div class="form-group">
-                    <label for="fileup">Upload your files here</label>
-                    <input type="file" id="fileup" class="form-control-file">
-                    <small id="fileuptext" class="form-text text-muted">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    </small> 
+        <div class="row">
+            <div class="col-md-6 boxy">
+                <div class="row">
+                    <div class="col-md-6 boxy">Col Medium 6</div>
+                    <div class="col-md-6 boxy">Col Medium 6</div>   
                 </div>
-                <h3>Submit this form?</h3>
+            </div>    
+            <div class="col-md-6 boxy">Col Medium 6 Second</div>
+        </div>
 
-                <div class="form-group">
-                    <label for="longtext">Give some feedback!</label>
-                    <textarea id="longtext" class="form-control" rows=10>Likh lo idhar
-                    </textarea> 
-                </div>
+    </div>
+<body>
+    <div class="container">
+    </div>
+    
 
-                <fieldset class="form-group">
-                <legend>Radios</legend>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Default radio
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Second default radio
-                    </label>
-                </div>
+      
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Check1
-                    </label>
-                </div>
+        <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" 
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="2" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                      Check2
-                    </label>
-                </div>
-                
-                
-                </fieldset>
-                
-                <input type="submit"  name="submit" value="Submit Form">
-                </fieldset>
-            </form>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" 
+                    id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-right">
+                <li class="nav-item">
+                <a class="nav-link" href="#">To the right</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-       
-            <h1>Example: Jumbotron</h1>
-            <div class="p-5 mb-4 bg-light rounded-3">
-                <div class="container-fluid py-5">
-                  <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-                  <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                  <button class="btn btn-primary btn-lg" type="button">Example button</button>
-                </div>
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0001.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0002.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0003.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0004.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0005.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0006.png" class="rounded"></a></div>
+    
+    </div>
+
+    <h1>Example: Content</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, cumque voluptatem nulla a voluptates veniam aperiam, recusandae eaque deleniti illum perspiciatis quibusdam excepturi rerum, iste aut fugiat labore enim dignissimos.</p>
+    <h1>Example: Form</h1>
+    <form action="index.html" method="get">
+        <fieldset class="form-control">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
-            <h1>Example: Buttons</h1>              
-            <button type="button" class="btn btn-primary" disabled="disabled">Primary</button>
-            <button type="button" class="btn btn-secondary">Secondary</button>
-            <button type="button" class="btn btn-success">Success</button>
-            <button type="button" class="btn btn-danger">Danger</button>
-            <button type="button" class="btn btn-warning">Warning</button>
-            <button type="button" class="btn btn-info">Info</button>
-            <button type="button" class="btn btn-light">Light</button>
-            <button type="button" class="btn btn-dark">Dark</button>
-            <button type="button" class="btn btn-link">Link</button>
-            
-
-            <h1>Example: Item List</h1>
-            <p>This is is a list</p>
-            <ol>
-                <li>Item One</li>
-                <li>Item Two</li>
-                <li>Item Three</li>
-            </ol>
-
-            <h1>Example: Table</h1>
-            <table border="1px">
-                <thead>
-                    <tr><th colspan="2">Age Table</th></tr>
-                </thead>
-                <tr>
-                    <td>Jhon</td>
-                    <td>53</td>
-                </tr>
-                <tr>
-                    <td>Ram</td>
-                    <td>35</td>
-                </tr>
-            </table>
-        
-             <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="form-group">
+            <label for="country"> Enter Country Name:</label>
+            <input id="country" class="form-control" type="text"  name="country_name" placeholder="country">
         </div>
+
+        <div class="form-group">
+            <input type="week" class="form-control" name="country" placeholder="" >
+        </div>
+
+        <h2>Enter Email Id and Password</h2>
+
+        <div class="form-group">
+            <input type="email"  class="form-control" name="email" placeholder="email">
+        </div>
+
+            <input type="password" name="password" placeholder="">
+        <h2>Do you like our service?</h2>
+        <label for="likeit">Like It:</label>
+        <input id="likeit" type="radio" name="likeitbutton">
+        <label for="notlikeit">Not Like It:</label>
+        <input id="notlikeit" type="radio" name="likeitbutton">
+
+
+        <h2>Rate our service</h2>
+        
+        <div class="form-group">
+            <select class="form-control" name="rating">
+                <option value="Great">3</option>
+                <option value="Okay">2</option>
+                <option value="Bad">1</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <select multiple class="form-control" name="rating">
+                <option value="Great">3</option>
+                <option value="Okay">2</option>
+                <option value="Bad">1</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+
+        <h3>Upload File</h3>
+        <div class="form-group">
+X            <label for="fileup">Upload your files here</label>
+            <input type="file" id="fileup" class="form-control-file">
+            <small id="fileuptext" class="form-text text-muted">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+            </small> 
+        </div>
+        <h3>Submit this form?</h3>
+
+        <div class="form-group">
+            <label for="longtext">Give some feedback!</label>
+            <textarea id="longtext" class="form-control" rows=10>Likh lo idhar
+            </textarea> 
+        </div>
+
+        <fieldset class="form-group">
+        <legend>Radios</legend>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Default radio
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+                Second default radio
+            </label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Check1
+            </label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="2" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+                Check2
+            </label>
+        </div>
+        
+        
+        </fieldset>
+        
+        <input type="submit"  name="submit" value="Submit Form">
+        </fieldset>
+    </form>
+
+
+    <h1>Example: Jumbotron</h1>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Custom jumbotron</h1>
+            <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+            <button class="btn btn-primary btn-lg" type="button">Example button</button>
+        </div>
+    </div>
+
+    <h1>Example: Buttons</h1>              
+    <button type="button" class="btn btn-primary" disabled="disabled">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+    <button type="button" class="btn btn-link">Link</button>
+    
+
+    <h1>Example: Item List</h1>
+    <p>This is is a list</p>
+    <ol>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+    </ol>
+
+    <h1>Example: Table</h1>
+    <table border="1px">
+        <thead>
+            <tr><th colspan="2">Age Table</th></tr>
+        </thead>
+        <tr>
+            <td>Jhon</td>
+            <td>53</td>
+        </tr>
+        <tr>
+            <td>Ram</td>
+            <td>35</td>
+        </tr>
+    </table>
+
+</div>
+
+        <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
