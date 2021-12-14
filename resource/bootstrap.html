@@ -10,6 +10,13 @@
             background-color: blanchedalmond;
             border: 2px solid black;
         }
+        #game,th,td{
+              border: 1px solid black;
+              empty-cells: show;
+        }
+        #game td{
+            padding:23px;
+        }
     </style>
 
 
@@ -33,10 +40,7 @@
 
     </div>
 <body>
-    <div class="container">
-    </div>
     
-
       
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
     <div class="container">
@@ -88,9 +92,9 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row flowers">
         
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0001.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="https://facebook.com" class="thumbnail"><img src="./images/flow/0001.png" class="rounded"></a></div>
         <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0002.png" class="rounded"></a></div>
         <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0003.png" class="rounded"></a></div>
         <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0004.png" class="rounded"></a></div>
@@ -101,6 +105,31 @@
 
     <h1>Example: Content</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, cumque voluptatem nulla a voluptates veniam aperiam, recusandae eaque deleniti illum perspiciatis quibusdam excepturi rerum, iste aut fugiat labore enim dignissimos.</p>
+    
+    <h1>Example: Game</h1>
+    <button id="gamereset">Reset Game</button>
+    <table id="game">
+        <tr>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+        </tr>
+        <tr>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+        </tr>
+        <tr>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+            <td id="gamecell"></td>
+        </tr>
+    </table>
+
+    <h2 id="event1">Hover</h2>
+    <h2 id="event2">Click</h2>
+    <h2 id="event3"> Some event</h2>
+    
     <h1>Example: Form</h1>
     <form action="index.html" method="get">
         <fieldset class="form-control">
@@ -257,7 +286,7 @@ X            <label for="fileup">Upload your files here</label>
 </div>
 
         <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-
+        <script src="./index.js"></script>
 </body>
 
 </html>
