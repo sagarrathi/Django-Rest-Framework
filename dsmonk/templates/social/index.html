@@ -1,8 +1,9 @@
+{% load static %}
 <html>
     <head>
         <title>``Conde Naste``</title>
-        <link  type="text/css" rel="stylesheet" href="index.css">
-        <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
+        <link href="{% static "social/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
         
     </head>
 
@@ -127,12 +128,12 @@
     <button type="button" class="btn btn-info" id="themechanger">Change Theme</button>
     <div class="row flowers">
         
-        <div class="col-md-2 col-sm-4"><a href="https://facebook.com" class="thumbnail"><img src="./images/flow/0001.png" class="rounded"></a></div>
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0002.png" class="rounded"></a></div>
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0003.png" class="rounded"></a></div>
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0004.png" class="rounded"></a></div>
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0005.png" class="rounded"></a></div>
-        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="./images/flow/0006.png" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="https://facebook.com" class="thumbnail"><img src="{% static "social/images/0001.png" %}" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="{% static "social/images/0002.png" %}" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="{% static "social/images/0003.png" %}" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="{% static "social/images/0004.png" %}" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="{% static "social/images/0005.png" %}" class="rounded"></a></div>
+        <div class="col-md-2 col-sm-4"><a href="#" class="thumbnail"><img src="{% static "social/images/0006.png" %}" class="rounded"></a></div>
     
     </div>
 
@@ -320,10 +321,10 @@ X            <label for="fileup">Upload your files here</label>
 
 </div>
 
-        <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static "social/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
         
-        <script src="./jquery-3.6.0.js"></script>
-        <script src="./index.js"></script>
+        <script src="{% static "social/jquery-3.6.0.js" %}"></script>
+        <script src="{% static "social/index.js" %}" ></script>
 </body>
 
 </html>
