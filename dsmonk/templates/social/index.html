@@ -28,9 +28,8 @@
 
     </div>
 <body>
-{{ access_record }}
-      
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
 
@@ -79,6 +78,23 @@
 </nav>
 
 
+<div class="container">
+    {% if access_record %}
+        <table id= "boxytable">
+            <thead>
+                <th>Site Name</th>
+                <th>Date Access</th>
+            </thead>
+    
+            {% for a in access_record %}
+                <td>{{ a.name }}</td>
+                <td>{{ a.date }}</td>
+                </tr>
+            {% endfor %}
+        </table>      
+    {% endif %}
+</div>
+    
 <div class="container">
 
     <h1>Example:Kineteic Game</h1>
