@@ -8,7 +8,7 @@ django.setup()
 ## FAKE POP SCRIPT
 
 import random
-from social.models import AccessRecord, Topic, Webpage
+from social.models import AccessRecord, Topic, Users, Webpage
 from faker import Faker
 
 fakegen =Faker()
@@ -33,8 +33,21 @@ def populate(N=5):
         acc_rec=AccessRecord.objects.get_or_create(name=webp, date=fake_date,)
 
 
+
+def populate_user(N=5):
+    for i in range(N):
+        fake_first_name=fakegen.name()
+        fake__second_name=fakegen.name()
+        fake_email=fakegen.email()
+
+        user_ob=Users.objects.get_or_create(first_name=fake_first_name,
+                                            second_name=fake__second_name,
+                                            email_id=fake_email)
+
+
 if __name__=="__main__":
     print("Population script")
-    populate(10)
+    # populate(10)
+    populate_user(10)
     print("Population completed")
 

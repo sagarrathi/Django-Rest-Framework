@@ -1,3 +1,4 @@
+from typing_extensions import Self
 from django.db import models
 from django.db.models.base import Model
 
@@ -21,3 +22,11 @@ class AccessRecord(models.Model):
 
     def __str__(self):
         return str(self.date)
+
+class Users(models.Model):
+    first_name=models.CharField(max_length=264)
+    second_name=models.CharField(max_length=264)
+    email_id=models.EmailField(max_length=254, unique=True, primary_key=True)
+
+    def __str__(self):
+        return str(self.first_name+self.second_name+"::"+self.email_id)

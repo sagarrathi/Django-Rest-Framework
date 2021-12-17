@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from social.models import Topic, Webpage, AccessRecord
+from social.models import Topic, Webpage, AccessRecord, Users
 
 
 # Create your views here.
@@ -19,3 +19,10 @@ def index(request):
 def help(request):
     my_dict={"temp_X":"Ram Ji Ki Jai bolo"}
     return render(request,'social/help.html',context=my_dict)
+
+
+def users(request):
+    user_list=Users.objects.all()
+    my_dict={"users":user_list}
+    return render(request, 'social/users.html', context=my_dict)
+

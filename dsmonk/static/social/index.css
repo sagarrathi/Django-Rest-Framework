@@ -13,8 +13,16 @@ p{
 
 .boxy {
     background-color: blanchedalmond;
-    border: 2px solid black;
+    border: 2px solid rgb(180, 59, 59);
 }
+
+#boxytable td, #boxytable th, #boxytable {   
+    background-color: whitesmoke ;
+    border:1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 #game,th,td{
       empty-cells: show;
