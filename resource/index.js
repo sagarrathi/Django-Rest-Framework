@@ -1,3 +1,38 @@
+////////////////////////////////////////////////////////////////////////
+// KINEATIC GAME
+//
+console.log($("span.dot"))
+
+function coloradder(a){
+  $(a).css("color", "green")
+}
+
+
+
+
+
+
+$("#themechanger").click(function(event){
+  console.log(event)
+  $("h2").toggleClass("turnRed")
+  
+})
+
+
+$('h2').click(function(){
+  console.log("There was a click")
+  $(this).text("Isko mat cho ")
+})
+
+
+$("#themechanger").on('click',function(){
+   $(this).removeClass("btn-info")
+  $(this).addClass("turnRed btn-lg")
+  $(".container").slideUp(3000)
+})
+
+
+
 
 e1=document.querySelector("#event1");
 e2=document.querySelector("#event2");
@@ -5,6 +40,10 @@ e3=document.querySelector("#event3");
 
 var boxes=document.querySelectorAll("#gamecell");
 
+
+///////////////////////////////////////////////////////////////////////////////// 
+// TIC TACK TOE GAME
+//
 
 flag="X"
 function xomarker(box){
@@ -27,6 +66,9 @@ function xoreseter(box){
 reset_button.addEventListener("click", function(){
   boxes.forEach(xoreseter);
 })
+
+// 
+/////////////////////////////////////////////////////////////////////////////////
 
 
 

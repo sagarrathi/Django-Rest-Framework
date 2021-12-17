@@ -1,17 +1,4 @@
 /* comments */
-h1{
-    color:rgb(112, 40, 12);
-}
-
-h2{
-    color:rgb(160, 73, 39);
-}
-
-h3{
-    color:rgb(233, 82, 22);
-}
-
-
 li{
     color:rgb(76, 173, 19);
 }
@@ -22,4 +9,43 @@ p{
 
 .btn.btn-success{
     color:chocolate;
+}
+
+.boxy {
+    background-color: blanchedalmond;
+    border: 2px solid black;
+}
+
+#game,th,td{
+      empty-cells: show;
+}
+
+#game td{
+    padding:23px;
+    border: 1px solid black;
+
+}
+
+
+.turnBlue, .turnBlue:hover, .turnBlue:active, .turnBlue:visited  {
+    color: #fff;
+    background-color: #2f3ad3 !important;
+    border-color: #2f3ad3;
+    }
+    
+
+.turnRed, .turnRed:hover, .turnRed:active, .turnRed:visited  {
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545;
+  }
+  
+.kineticgame .dot{
+    height: 70px;
+    width: 70px;
+    color:grey;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+
 }
