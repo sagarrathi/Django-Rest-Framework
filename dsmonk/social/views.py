@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from social.models import Topic, Webpage, AccessRecord, Users
-
+from social import forms
 
 # Create your views here.
 from django.http import HttpResponse
@@ -25,4 +25,22 @@ def users(request):
     user_list=Users.objects.all()
     my_dict={"users":user_list}
     return render(request, 'social/users.html', context=my_dict)
+
+def form_view(request):
+    
+    my_dict={"form":forms.UserModelForm()}
+    
+    if request.method=="POST":
+        form=forms.UserModelForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            print("Validation sucessful")
+            print(form.cleaned_data)
+            print(form.errors)
+
+        
+        my_dict["form"]=form
+          
+    return render(request,'social/forms.html', context=my_dict)
 
