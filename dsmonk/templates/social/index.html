@@ -1,83 +1,6 @@
+{% extends "social/base.html" %}
 {% load static %}
-<html>
-    <head>
-        <title>``Conde Naste``</title>
-        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
-        <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-        
-    </head>
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
-            <div class="col-lg-4 col-md-4 boxy" >Col Large 4</div>
-            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 boxy">
-                <div class="row">
-                    <div class="col-md-6 boxy">Col Medium 6</div>
-                    <div class="col-md-6 boxy">Col Medium 6</div>   
-                </div>
-            </div>    
-            <div class="col-md-6 boxy">Col Medium 6 Second</div>
-        </div>
-
-    </div>
-<body>
-
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
-
-        <button class="navbar-toggler" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" 
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" 
-                    id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
-                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav nav-right">
-                <li class="nav-item">
-                <a class="nav-link" href="#">To the right</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
+{% block body_block %}
 <div class="container">
     {% if access_record %}
         <table id= "boxytable">
@@ -238,7 +161,7 @@
 
         <h3>Upload File</h3>
         <div class="form-group">
-X            <label for="fileup">Upload your files here</label>
+            <label for="fileup">Upload your files here</label>
             <input type="file" id="fileup" class="form-control-file">
             <small id="fileuptext" class="form-text text-muted">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
@@ -333,14 +256,7 @@ X            <label for="fileup">Upload your files here</label>
         </tr>
     </table>These methods are used to register behaviors to take effect when the user interacts with the browser, and to further manipulate those registered behaviors.
 
-
-
 </div>
 
-        <script src="{% static "bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-        
-        <script src="{% static "jquery-3.6.0.js" %}"></script>
-        <script src="{% static "social/index.js" %}" ></script>
-</body>
+{% endblock %}
 
-</html>

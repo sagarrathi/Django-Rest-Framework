@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>``Conde Naste``</title>
+        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
+        <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+        <script src="{% static "bootstrap/js/bootstrap.bundle.min.js" %}"></script>     
+        <script src="{% static "jquery-3.6.0.js" %}"></script>
+
+        
+    </head>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy" >Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 boxy">
+                <div class="row">
+                    <div class="col-md-6 boxy">Col Medium 6</div>
+                    <div class="col-md-6 boxy">Col Medium 6</div>   
+                </div>
+            </div>    
+            <div class="col-md-6 boxy">Col Medium 6 Second</div>
+        </div>
+
+    </div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+    
+            <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'social:index' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'social:forms' %}">Social Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'admin:index' %}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" 
+                        id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                        Dropdown link
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-right">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">To the right</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<body>
+
+{% block body_block %}
+
+
+{% endblock %}
+
+</body>
+<script src="{% static "social/index.js" %}" ></script>
+
+</html>

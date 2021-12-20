@@ -38,7 +38,7 @@ def form_view(request):
             print("Validation sucessful")
             print(form.cleaned_data)
             print(form.errors)
-
+            return index(request)
         
         my_dict["form"]=form
           
