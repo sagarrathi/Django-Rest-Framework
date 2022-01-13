@@ -29,6 +29,7 @@ def users(request):
 def form_view(request):
     
     my_dict={"form":forms.UserModelForm()}
+
     
     if request.method=="POST":
         form=forms.UserModelForm(request.POST)
@@ -44,3 +45,27 @@ def form_view(request):
           
     return render(request,'social/forms.html', context=my_dict)
 
+def login(request):
+    
+    my_dict={"userform":forms.UserProfileInfoForm()}
+
+    
+    if request.method=="POST":
+        form=forms.UserProfileInfoForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            print("Validation sucessful")
+            print(form.cleaned_data)
+            print(form.errors)
+            return index(request)
+        
+        my_dict["userform"]=form
+          
+    return render(request,'social/login.html', context=my_dict)
+
+def logout(request):
+    return render(request,'social/logout.html', context={})
+
+def registration(request):
+    return render(request,'social/registration.html', context={})

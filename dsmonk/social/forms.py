@@ -1,6 +1,7 @@
 from django import forms
 from django.core import validators
-from django.forms import fields
+from django.db.models.deletion import CASCADE
+from django.forms import fields, widgets
 from social import models
 
 def check_for_small(value):
@@ -42,3 +43,22 @@ class UserModelForm(forms.ModelForm):
         model= models.Users
         fields=['first_name', 'email_id']
 
+
+from django.contrib.auth.models import User
+class UserForm(forms.ModelForm):
+    password=forms.CharField(widget=forms.PasswordInput())
+
+    class Meta():
+        model=User
+        fields=('username', 'email','password')
+    
+
+
+from social.models import UserProfileInfo
+class UserProfileInfoForm(forms.ModelForm):
+    portfolio =forms.URLField(required=True)
+    picture=forms.ImageField(required=True)
+
+    class Meta():
+        model=UserProfileInfo
+        exclude=('user',)

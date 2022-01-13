@@ -1,17 +1,30 @@
 {% extends "social/base.html" %}
 {% load static %}
+
+
+{% block title_block %}
+Main Index Page
+{% endblock %}
+
+
 {% block body_block %}
+
+{% load extra %}
+
 <div class="container">
     {% if access_record %}
         <table id= "boxytable">
             <thead>
                 <th>Site Name</th>
                 <th>Date Access</th>
+                <th>Forward Date</th>
             </thead>
     
             {% for a in access_record %}
-                <td>{{ a.name }}</td>
-                <td>{{ a.date }}</td>
+                <td>{{ a.name|extra_cut:"a" }}</td>
+                <td>{{ a.date|date:"Y-m-d" }}</td>
+                <td>{{ a.date|add:"10" }}</td>
+                
                 </tr>
             {% endfor %}
         </table>      
