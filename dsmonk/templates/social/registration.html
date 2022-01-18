@@ -6,19 +6,20 @@ Registartion Page
 
 
 {% block body_block %}
-<div class ="container">
 
-    <h1> This is our Registration page</h1>
+    {% if registered %}
+        <h1> Thank You for registering </h1>
+    {% else %}
+        <h1>Register Here!</h1>
 
-    <form action="{%url 'social:forms' %}", method="POST">
-            <div class="form-group">
-                {{userform.as_p}} 
-                {% csrf_token %}
-            </div>
-    <input type="submit" class="btn btn-info">
-
-    </form> 
-</div>
+        <form enctype="multipart/form-data" method="POST", action="">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" name="" value="Register">
+        </form>
+    {% endif %}
+    
 {% endblock %}
 
 

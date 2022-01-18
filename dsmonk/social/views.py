@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from social.models import Topic, Webpage, AccessRecord, Users
+from social.models import AccessRecord, Users
 from social import forms
 
 # Create your views here.
@@ -68,4 +68,41 @@ def logout(request):
     return render(request,'social/logout.html', context={})
 
 def registration(request):
-    return render(request,'social/registration.html', context={})
+    registered=False
+    
+    # Get form data
+    if request.method =="POST":
+        user_form=forms.UserForm(data=request.POST)
+        profile_form=forms.UserProfileInfoForm(request.POST, request.FILES)
+        
+        # Check data is valid
+        if user_form.is_valid() and profile_form.is_valid():
+            user=user_form.save(commit=False)
+            user.set_password(user.password) # For hashing passsword
+            user.save()
+
+            #Profile
+            profile=profile_form.save(commit=False)
+            profile.user=user
+
+            print(request.FILES)
+            # if 'picture' in request.FILES:
+            #     profile.picture=request.FILES['picture']
+
+            profile.save()
+
+            registered=True
+        else:
+            print(user_form.errors, profile_form.errors)
+
+    else:
+        user_form=forms.UserForm()
+        profile_form=forms.UserProfileInfoForm()
+
+    context_dict={
+        'user_form':user_form,
+        'profile_form':profile_form,
+        'registered':registered
+        }
+    
+    return render(request,'social/registration.html', context=context_dict)
