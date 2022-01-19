@@ -16,56 +16,42 @@ def index(request):
     return render(request,'social/index.html',context=my_dict)
 
     # return HttpResponse("<h1>Hello world</h1>")
-def help(request):
-    my_dict={"temp_X":"Ram Ji Ki Jai bolo"}
-    return render(request,'social/help.html',context=my_dict)
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 
+def user_login(request):
 
-def users(request):
-    user_list=Users.objects.all()
-    my_dict={"users":user_list}
-    return render(request, 'social/users.html', context=my_dict)
+    if request.method =='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password') 
 
-def form_view(request):
-    
-    my_dict={"form":forms.UserModelForm()}
+        user =authenticate(username=username, password=password)
 
-    
-    if request.method=="POST":
-        form=forms.UserModelForm(request.POST)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('social:index'))
+            else:
+                return HttpResponse("Account not active")
+        else:
+            print("Someone tried but cannot login")
+            print(username, password)
+            return HttpResponse("Invalid details supplied")
         
-        if form.is_valid():
-            form.save(commit=True)
-            print("Validation sucessful")
-            print(form.cleaned_data)
-            print(form.errors)
-            return index(request)
-        
-        my_dict["form"]=form
-          
-    return render(request,'social/forms.html', context=my_dict)
+    else:
+        return render(request,'social/login.html', context={})
 
-def login(request):
-    
-    my_dict={"userform":forms.UserProfileInfoForm()}
+# Only login can enter
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('social:index'))
 
-    
-    if request.method=="POST":
-        form=forms.UserProfileInfoForm(request.POST)
-        
-        if form.is_valid():
-            form.save(commit=True)
-            print("Validation sucessful")
-            print(form.cleaned_data)
-            print(form.errors)
-            return index(request)
-        
-        my_dict["userform"]=form
-          
-    return render(request,'social/login.html', context=my_dict)
-
-def logout(request):
-    return render(request,'social/logout.html', context={})
+@login_required
+def special(request):
+    return HttpResponse("you are logged in")    
 
 def registration(request):
     registered=False
@@ -106,3 +92,43 @@ def registration(request):
         }
     
     return render(request,'social/registration.html', context=context_dict)
+
+
+
+
+
+
+
+
+
+
+def help(request):
+    my_dict={"temp_X":"Ram Ji Ki Jai bolo"}
+    return render(request,'social/help.html',context=my_dict)
+
+
+def users(request):
+    user_list=Users.objects.all()
+    my_dict={"users":user_list}
+    return render(request, 'social/users.html', context=my_dict)
+
+def form_view(request):
+    
+    my_dict={"form":forms.UserModelForm()}
+
+    
+    if request.method=="POST":
+        form=forms.UserModelForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            print("Validation sucessful")
+            print(form.cleaned_data)
+            print(form.errors)
+            return index(request)
+        
+        my_dict["form"]=form
+          
+    return render(request,'social/forms.html', context=my_dict)
+
+

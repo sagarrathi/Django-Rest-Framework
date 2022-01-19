@@ -8,13 +8,22 @@ Login Page
 {% block body_block %}
 <div class ="container">
 
-    <h1> This is our Login page</h1>
+    <h1> Please login: This is our Login page</h1>
 
-    <form action="{%url 'social:forms' %}", method="POST">
+    <form action="{%url 'social:login' %}", method="POST">
             <div class="form-group">
-                {{userform.as_p}} 
                 {% csrf_token %}
+                
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Enter Username">
+
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+
+                <input type="submit" name="" value="login">
+
             </div>
+            
     <input type="submit" class="btn btn-info">
 
     </form> 
