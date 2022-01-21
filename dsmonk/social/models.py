@@ -1,8 +1,29 @@
-from typing_extensions import Self
 from django.db import models
 from django.db.models.base import Model
 
 # Create your models here.
+from django.urls import reverse
+
+class School(models.Model):
+    name=models.CharField(max_length=256)
+    principal=models.CharField(max_length=256)
+    
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("social:detail", kwargs={'pk':self.pk})
+
+class Student(models.Model):
+    name=models.CharField(max_length=256)
+    school=models.ForeignKey(School, related_name='students', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+        
+
+
 class Topic(models.Model):
     top_name=models.CharField(max_length=264, unique=True)
     def __str__(self):
@@ -38,3 +59,4 @@ class UserProfileInfo(models.Model):
     picture=models.ImageField(blank=False,upload_to='profile_pics')
     def __str__(self):
         return self.user.username
+
