@@ -1,10 +1,72 @@
-from django.shortcuts import render
 
+########## For Normal Template ########
+from django.shortcuts import render
+from django.http import HttpResponse
+#######################################
+
+###### For Forms Auto Poplate #########
 from social.models import AccessRecord, Users
 from social import forms
+#######################################
+
+################### For Login #########
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+#######################################
+
+
+##### For Classe based view ###########
+from social.models import School, Student
+from django.views.generic import (View, TemplateView, 
+                                    ListView, DetailView,
+                                    CreateView,UpdateView,
+                                    DeleteView
+                                    )
+from django.urls import reverse_lazy
+#######################################
+
+
 
 # Create your views here.
-from django.http import HttpResponse
+class CBView(View):
+    def get(self, request):
+        return HttpResponse("Jai Shri Ram")
+
+class TMView(TemplateView):
+    template_name='social/index.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['temp_X']="Jai Shree Hanuman Ji Ki"
+        return context
+
+class SchoolListView(ListView):
+    context_object_name="schools"
+    model=School
+
+
+class SchoolDetailView(DetailView):
+    context_object_name="school_detail"
+    model=School
+    template_name='social/school_detail.html'
+
+class SchoolCreateView(CreateView):
+    fields=('name',)
+    model=School
+
+
+class SchoolUpdateView(UpdateView):
+    fields=('principal',)
+    model=School
+
+
+class SchoolDeleteView(DeleteView):
+    model=School
+    success_url =reverse_lazy("social:list")
+
+
 
 def index(request):
     webp_list=AccessRecord.objects.order_by('date')
@@ -16,10 +78,6 @@ def index(request):
     return render(request,'social/index.html',context=my_dict)
 
     # return HttpResponse("<h1>Hello world</h1>")
-from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
 
 def user_login(request):
 

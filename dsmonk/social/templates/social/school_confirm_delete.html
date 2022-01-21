@@ -1,0 +1,26 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+CBV: Confirm Delete
+{% endblock %}
+
+
+{% block body_block %}
+<div class ="container">
+
+    <h1>CBV: Confirm Delete view</h1></br>
+    <h3> Delete:{{school.name}} ?</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit"class="btn btn-danger" value="Delete">        
+        <a href="{% url 'social:detail' pk=school.pk %}">Cancel</a>
+    </form>  
+</div>
+{% endblock %}
+
+
+
+
