@@ -70,7 +70,7 @@
                         <a class="nav-link dropdown-toggle" href="#" 
                         id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
                         aria-haspopup="true" aria-expanded="false">
-                        User Managemen
+                        UserManage
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {% if user.is_authenticated %}
@@ -84,7 +84,7 @@
                 </ul>
                 <ul class="navbar-nav nav-right">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">To Right</a>
+                    <a class="nav-link" href="{%url 'blog:blog_about' %}">Blog</a>
                     </li>
                 </ul>
             </div>

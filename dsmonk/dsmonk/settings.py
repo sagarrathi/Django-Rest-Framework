@@ -15,7 +15,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR=Path(__file__).resolve().parent.parent /'templates'
+TEMPLATE_DIR_BLOG=Path(__file__).resolve().parent.parent /'blog/templates'
+
 STATIC_DIR=Path(__file__).resolve().parent.parent /'static'
+STATIC_DIR_BLOG=Path(__file__).resolve().parent.parent /'blog/static'
 MEDIA_DIR=Path(__file__).resolve().parent.parent /'media'
 
 
@@ -40,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social'
+    'social',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +62,7 @@ ROOT_URLCONF = 'dsmonk.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR,TEMPLATE_DIR_BLOG],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,7 +136,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_DIRS=[STATIC_DIR,]
+STATICFILES_DIRS=[STATIC_DIR,STATIC_DIR_BLOG]
 STATIC_URL = '/static/'
 
 # Default primary key field type
@@ -146,3 +150,4 @@ MEDIA_URL='/media/'
 
 #LOGIN
 LOGIN_URL='/social/login'
+LOGIN_REDIRECT_URL='/'
