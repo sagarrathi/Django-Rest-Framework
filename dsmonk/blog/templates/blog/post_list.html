@@ -1,0 +1,20 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+Blooooog
+{% endblock %}
+
+
+{% block body_block %}
+
+{{post_list}}
+
+{% for post in post_list %}
+    <h1><a href="{% url  'blog:blog_post_detail' pk=post.pk %}">{{post}}</a></h1>
+    <p>Published: On:{{post.published|date:"D M Y"}}</p>
+    {% endfor %}
+
+{% endblock %}
+
