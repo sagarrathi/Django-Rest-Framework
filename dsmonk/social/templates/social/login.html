@@ -9,11 +9,14 @@ Login Page
 <div class ="container">
 
     <h1> Please login: This is our Login page</h1>
+    {% if form.errors %}
+    <p>somthing wrong</p>
+    {% endif%}
 
     <form action="{%url 'social:login' %}", method="POST">
             <div class="form-group">
                 {% csrf_token %}
-                
+                {{form}}
                 <label for="username">Username:</label>
                 <input type="text" name="username" placeholder="Enter Username">
 
@@ -21,7 +24,8 @@ Login Page
                 <input type="password" name="password">
 
                 <input type="submit" name="" value="login">
-
+                <input type="hidden" name="next" value="{{next}}">
+                
             </div>
             
     <input type="submit" class="btn btn-info">

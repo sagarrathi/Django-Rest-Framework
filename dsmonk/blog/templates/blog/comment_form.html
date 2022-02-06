@@ -1,0 +1,24 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+Comment Form
+{% endblock %}
+
+
+{% block body_block %}
+
+<h1>New Comment</h1>
+  <form class="post-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="button" class="btn btn-success">Post Comment</button>
+  </form>
+
+
+
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}
+

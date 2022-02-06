@@ -10,6 +10,7 @@ urlpatterns = [
     path("forms", views.form_view, name="forms"),
     path("login", views.user_login, name="login"),
     path("logout", views.user_logout, name="logout"),
+    # kwargs={'next_page':'/}
     path("registration", views.registration, name="registration"),
     # path('cbv',views.TMView.as_view(), name="cbv"),
  
