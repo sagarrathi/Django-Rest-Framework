@@ -36,7 +36,8 @@ Blooooog
         {{comment.created_date}}
            
             {{comment.text|safe|linebreaks}} By: {{comment.author}}
-            {% if not comment.approved_comment %}
+            {% if no
+                t comment.approved_comment %}
             <a href="{% url 'blog:blog_comment_remove' pk=comment.pk%}">Comment Remove</a>>
             <a href="{% url 'blog:blog_comment_approve' pk=comment.pk%}">Comment Approve</a>>
         {% endif %}
