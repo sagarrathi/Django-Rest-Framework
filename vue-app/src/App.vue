@@ -1,47 +1,43 @@
 <template>
-<header><h1> My friends</h1></header>
-<ul>
-   <friend-contact></friend-contact>
-   <friend-contact></friend-contact>
-</ul>
+  <header><h1>My friends</h1></header>
+  <ul>
+    <FriendContact
+      id="ram"
+      name="ram raghuvanshi"
+      phone="0214"
+      email="ram@bharat.in"
+    ></FriendContact>
 
-<div id="app">
-</div>
+    <FriendContact
+      id="sita"
+      name="sita raghuvanshi"
+      phone="0214"
+      email="sita@janki.in"
+    ></FriendContact>
+  </ul>
 
+  <div id="app"></div>
 </template>
 
 <script>
+import FriendContact from "./components/FriendContact.vue";
 export default {
-  data() {
-    return {
-      friends: [
-        {
-          id: "ram",
-          name: "ram raghuvanshi",
-          phone: "0214",
-          email: "ram@bharat.in",
-        },
-        {
-          id: "sita",
-          name: "sita raghuvanshi",
-          phone: "0214",
-          email: "sita@janaki.in",
-        },
-      ],
-    };
-  },
+    data() {
+        return {
+        };
+    },
+    components: { FriendContact }
 };
 </script>
 
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 body {
@@ -99,5 +95,4 @@ header {
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
-
 </style>
