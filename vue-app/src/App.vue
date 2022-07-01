@@ -1,20 +1,13 @@
 <template>
   <header><h1>My friends</h1></header>
-  <ul>
+  <ul v-for="friend in friends" :key="friend.key">
     <FriendContact
-      id="ram"
-      name="ram raghuvanshi"
-      phone="0214"
-      email="ram@bharat.in"
-      :is_missing="true"
-    ></FriendContact>
-
-    <FriendContact
-      id="sita"
-      name="sita raghuvanshi"
-      phone="0214"
-      email="sita@janki.in"
-      :is_missing="true"
+      :id="friend.id"
+      :name="friend.name"
+      :phone="friend.phone"
+      :email="friend.email" 
+      :is_missing="friend.is_missing"
+      @toggle-missing="toggle_missing_app"
     ></FriendContact>
   </ul>
 
@@ -26,8 +19,32 @@ export default {
     data() {
         return {
         is_missing:false,
+        friends: [
+        {
+          id: "ram",
+          name: "ram raghuvanshi",
+          phone: "0214",
+          email: "ram@bharat.in",
+          is_missing: true,
+        },
+        {
+          id: "sita",
+          name: "sita raghuvanshi",
+          phone: "0214",
+          email: "sita@janki.in",
+          is_missing: true,
+        },]
+
         };
     },
+
+    methods: {
+    toggle_missing_app(id) {
+      alert("running from app")
+      this.friends.find(frind=> frind.id === ) 
+     this.is_missing = !this.is_missing 
+    },
+  },
 };
 </script>
 

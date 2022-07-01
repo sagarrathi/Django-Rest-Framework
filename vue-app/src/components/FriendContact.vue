@@ -1,9 +1,9 @@
 <template>
   <li>
-    <h2>{{ name }} {{ is_missing_f  ? "(missing)" : "" }}</h2>
+    <h2>{{ name }} {{ is_missing  ? "(missing)" : "" }}</h2>
     <h6>Id:{{ id }}</h6>
     <button @click="toggle_missing()">
-      {{ is_missing_f  ? "Found" : "Missing" }}
+      {{ is_missing ? "Found" : "Missing" }}
     </button>
 
     <button @click="toggle_detail()">
@@ -17,7 +17,8 @@
       <li>
         <strong>{{ email }}</strong>
       </li>
-    </ul>
+    </ul>      
+
   </li>
 </template>
 
@@ -26,15 +27,11 @@ export default {
   // props: ["id", "name", "phone", "email", "is_missing"],
 
   props: {
-    id: String,
+    id: { type: String, required: true }, 
     phone: { type: String, required: true },
     name: { type: String, required: true },
     email: String,
-    is_missing: { 
-      type: Boolean, 
-      required: false, 
-      default: false ,
-    },
+    is_missing: { type: Boolean, },
   },
 
   data() {
@@ -49,7 +46,7 @@ export default {
       this.detail_switch = !this.detail_switch;
     },
     toggle_missing() {
-     this.is_missing_f = !this.is_missing_f 
+     this.$emit('toggle-missing', this.id); 
     },
   },
 };
