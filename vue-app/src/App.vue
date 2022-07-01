@@ -6,6 +6,7 @@
       name="ram raghuvanshi"
       phone="0214"
       email="ram@bharat.in"
+      :is_missing="true"
     ></FriendContact>
 
     <FriendContact
@@ -13,6 +14,7 @@
       name="sita raghuvanshi"
       phone="0214"
       email="sita@janki.in"
+      :is_missing="true"
     ></FriendContact>
   </ul>
 
@@ -23,6 +25,7 @@
 export default {
     data() {
         return {
+        is_missing:false,
         };
     },
 };
