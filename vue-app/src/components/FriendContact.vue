@@ -1,13 +1,14 @@
 <template>
   <li>
-    <h2>{{ friend.name }}</h2>
+    <h2>{{ name }}</h2>
+    <h6>Id:{{id}}</h6>
     <button @click="toggle_detail()"> {{detail_switch ? 'Hide': 'Show'}} Details</button>
     <ul v-if="detail_switch">
       <li>
-        <strong>{{ friend.phone }}</strong>
+        <strong>{{ phone }}</strong>
       </li>
       <li>
-        <strong>{{ friend.email }}</strong>
+        <strong>{{ email }}</strong>
       </li>
     </ul>
   </li>
@@ -15,15 +16,16 @@
 
 <script>
 export default {
+  props: [
+    'id',
+    'name',
+    'phone',
+    'email',
+  ], 
+
   data() {
     return {
       detail_switch: false,
-      friend: {
-        id: "ram",
-        name: "ram raghuvanshi",
-        phone: "0214",
-        email: "ram@bharat.in",
-      },
     };
   },
 
