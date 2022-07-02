@@ -12,13 +12,15 @@
 
     <ul v-if="detail_switch">
       <li>
-        <strong>{{ phone }}</strong>
+        <strong> Phone: </strong>
+          {{ phone }}
       </li>
       <li>
-        <strong>{{ email }}</strong>
+        <strong>Email: </strong> 
+          {{ email }}
       </li>
     </ul>      
-
+    <button @click="$emit('delete-contact',id)">Delete</button>
   </li>
 </template>
 
@@ -34,10 +36,17 @@ export default {
     is_missing: { type: Boolean, },
   },
 
+  emits:['toggle-missing-event', 'delete-contact'],
+  
+  // emits: {
+  //   'toggle-missing-event': function(id){
+  //     if (id){return true;} else {return false;}
+  //   }
+  // },
+
   data() {
     return {
       detail_switch: false,
-      is_missing_f: this.is_missing,
     };
   },
 
@@ -46,8 +55,10 @@ export default {
       this.detail_switch = !this.detail_switch;
     },
     toggle_missing() {
-     this.$emit('toggle-missing', this.id); 
+     this.$emit('toggle-missing-event', this.id); 
     },
+
+    
   },
 };
 </script>
