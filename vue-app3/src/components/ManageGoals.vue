@@ -2,11 +2,13 @@
   <h2>Manage Goals</h2>
   <input type="text" ref="goal" />
   <button @click="set_goal">Set Goal</button>
-  <error-alert v-if="input_is_invalid">
-    <h2>Input Invalid</h2>
-    <p>Please enetr data</p>
-    <button @click="confirm_wrong">Ok</button>
-  </error-alert>
+  <teleport to="body">
+    <error-alert v-if="input_is_invalid">
+      <h2>Input Invalid</h2>
+      <p>Please enetr data</p>
+      <button @click="confirm_wrong">Ok</button>
+    </error-alert>
+  </teleport>
 </template>
 
 <script>
@@ -31,9 +33,9 @@ export default {
       }
     },
 
-    confirm_wrong(){
-        this.input_is_invalid=false;
-    }
+    confirm_wrong() {
+      this.input_is_invalid = false;
+    },
   },
 };
 </script>
