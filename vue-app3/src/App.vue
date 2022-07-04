@@ -3,11 +3,10 @@
     <the-header></the-header>
     <button @click="set_selected_component('active-goals')">Active Goals</button>
     <button @click="set_selected_component('manage-goals')">Manage Goals</button>
-    <active-goals v-if="selected_component === 'active-goals'">
-    </active-goals>
+    
+    <component :is="selected_component"></component>
 
-    <manage-goals v-if="selected_component === 'manage-goals'">
-    </manage-goals>
+
   </div>
 </template>
 
