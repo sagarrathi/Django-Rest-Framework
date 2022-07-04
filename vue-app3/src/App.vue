@@ -11,11 +11,11 @@
         :role="activeUser.role"
       ></user-info>
     </base-card>
-    <course-goals>
-      <template #default="slotProps">
+    <course-goals #default="slotProps">
+      <!-- <template #default="slotProps"> -->
       <h2>{{ slotProps.item }}</h2>
       <p>{{slotProps['god']}}</p>
-      </template>
+      <!-- </template> -->
       </course-goals>
   </div>
 </template>
