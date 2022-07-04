@@ -3,9 +3,9 @@
     <the-header></the-header>
     <button @click="set_selected_component('active-goals')">Active Goals</button>
     <button @click="set_selected_component('manage-goals')">Manage Goals</button>
-    
-    <component :is="selected_component"></component>
-
+    <keep-alive>
+      <component :is="selected_component"></component>
+    </keep-alive>
 
   </div>
 </template>
