@@ -10,11 +10,10 @@
 
 
 <script>
-import BaseBadge from '../components/BaseBadge.vue';
 
 
 export default {
-  components:{BaseBadge,},
+  
   props: ['fullName', 'infoText', 'role'],
 };
 </script>
