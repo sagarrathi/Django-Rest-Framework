@@ -1,39 +1,21 @@
 <template>
   <the-header title="My demo app"></the-header>
-  <ul>
-    <stored-resources
-    :resources="resources"
-    ></stored-resources>
-  </ul>
+  <the-resources></the-resources>
 </template>
 
 <script>
-import StoredResources from './components/learning-resources/StoredResources.vue';
 import TheHeader from './components/layout/TheHeader.vue';
+import TheResources from './components/learning-resources/TheResources.vue';
 
 export default {
   components: {
-    'stored-resources': StoredResources,
-    'the-header':TheHeader,
-  },
+    "the-header": TheHeader,
+    "the-resources":TheResources,
+},
 
   data() {
     return {
-      resources: [
-        {
-          id: 'vuejs',
-          title: 'Official Guide',
-          description: 'The offcial Vues.js',
-          link: 'https://vuejs.org',
-        },
-
-        {
-          id: 'google',
-          title: 'Google',
-          description: 'The Search Engine',
-          link: 'https://google.com',
-        },
-      ],
+      
     };
   },
 };
