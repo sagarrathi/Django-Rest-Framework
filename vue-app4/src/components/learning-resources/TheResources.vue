@@ -10,8 +10,9 @@
     :mode="add_resource_button_mode"
     >Add Resource</base-button>
   </base-card>
-
+  <keep-alive>
   <component :is="selected_tab"></component>
+  </keep-alive>
 </template>
 
 <script>
