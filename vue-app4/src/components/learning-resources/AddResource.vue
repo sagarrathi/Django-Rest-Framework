@@ -1,15 +1,18 @@
 <template>
-  <base-dialog v-if="input_is_invalid" title="Invlaid Input" @close="accept_wrong">
-  <template #default>
-    <p>Unfortunately atleastin one input is valid</p>
-    <p>PLease check all input</p>
-  </template>
-  <template #actions>
-    <base-button @click="accept_wrong">Okay</base-button>
-  </template>
-  
+  <base-dialog
+    v-if="input_is_invalid"
+    title="Invlaid Input"
+    @close="accept_wrong"
+  >
+    <template #default>
+      <p>Unfortunately atleastin one input is valid</p>
+      <p>PLease check all input</p>
+    </template>
+    <template #actions>
+      <base-button @click="accept_wrong">Okay</base-button>
+    </template>
   </base-dialog>
-  
+
   <base-card>
     <form @submit.prevent="submit_data">
       <div class="form-control">
@@ -47,7 +50,10 @@ export default {
     };
   },
   methods: {
-    accept_wrong() {this.input_is_invalid=false;},
+    accept_wrong() {
+      this.input_is_invalid = false;
+    },
+   
     submit_data() {
       const resource = {
         title: this.$refs.titleInput.value,

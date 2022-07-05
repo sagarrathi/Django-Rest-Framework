@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <learning-resource
+    <learning-resource 
       v-for="resource in resources"
       :key="resource.id"
       :resource="resource"
