@@ -8,7 +8,6 @@
   </ul>
 </template>
 
-
 <script>
 import LearningResource from './LearningResource.vue';
 
@@ -16,8 +15,7 @@ export default {
   components: {
     'learning-resource': LearningResource,
   },
-
-  props: ['resources'],
+  inject: ['resources'],
 };
 </script>
 
