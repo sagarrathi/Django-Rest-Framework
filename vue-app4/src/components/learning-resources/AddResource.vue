@@ -1,4 +1,15 @@
 <template>
+  <base-dialog v-if="input_is_invalid" title="Invlaid Input" @close="accept_wrong">
+  <template #default>
+    <p>Unfortunately atleastin one input is valid</p>
+    <p>PLease check all input</p>
+  </template>
+  <template #actions>
+    <base-button @click="accept_wrong">Okay</base-button>
+  </template>
+  
+  </base-dialog>
+  
   <base-card>
     <form @submit.prevent="submit_data">
       <div class="form-control">
@@ -29,15 +40,30 @@
 
 <script>
 export default {
-  inject: ["add_resource"],
+  inject: ['add_resource'],
+  data() {
+    return {
+      input_is_invalid: false,
+    };
+  },
   methods: {
+    accept_wrong() {this.input_is_invalid=false;},
     submit_data() {
-      const resource_to_add = {
+      const resource = {
         title: this.$refs.titleInput.value,
         description: this.$refs.descriptionInput.value,
         link: this.$refs.linkInput.value,
       };
-        this.add_resource(resource_to_add);
+
+      if (
+        resource.title.trim() === '' ||
+        resource.description.trim() === '' ||
+        resource.link.trim() === ''
+      ) {
+        this.input_is_invalid = true;
+      }
+
+      this.add_resource(resource);
     },
   },
 };
