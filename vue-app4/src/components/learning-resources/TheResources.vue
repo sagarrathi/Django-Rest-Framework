@@ -48,7 +48,8 @@ export default {
 
   provide(){
     return {
-      resources: this.resources
+      resources: this.resources,
+      add_resource: this.add_resource
     }
   },
 
@@ -56,7 +57,7 @@ export default {
     stored_resource_button_mode(){
       return this.selected_tab === 'stored-resources' ? null: 'flat';
     },
-    
+
     add_resource_button_mode(){
       return this.selected_tab === 'add-resource' ? null: 'flat';
     },
@@ -64,11 +65,15 @@ export default {
   },
 
   methods: {
-    
-
     set_selected_tab(val) {
       this.selected_tab = val;
     },
+
+    add_resource(resource_to_add){
+      resource_to_add['id']= new Date().toISOString();
+      this.resources.push(resource_to_add);
+    }
+    
   },
 };
 </script>
