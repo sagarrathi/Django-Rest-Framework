@@ -1,17 +1,19 @@
 <template>
   <base-card>
-    <base-button 
-    @click="set_selected_tab('stored-resources')"
-    :mode="stored_resource_button_mode"
-    >Stored Resources</base-button>
+    <base-button
+      @click="set_selected_tab('stored-resources')"
+      :mode="stored_resource_button_mode"
+      >Stored Resources</base-button
+    >
 
-    <base-button 
-    @click="set_selected_tab('add-resource')"
-    :mode="add_resource_button_mode"
-    >Add Resource</base-button>
+    <base-button
+      @click="set_selected_tab('add-resource')"
+      :mode="add_resource_button_mode"
+      >Add Resource</base-button
+    >
   </base-card>
   <keep-alive>
-  <component :is="selected_tab"></component>
+    <component :is="selected_tab"></component>
   </keep-alive>
 </template>
 
@@ -25,8 +27,7 @@ export default {
     AddResource,
   },
 
-  data() 
-  {
+  data() {
     return {
       selected_tab: 'stored-resources',
       resources: [
@@ -47,22 +48,22 @@ export default {
     };
   },
 
-  provide(){
+  provide() {
     return {
       resources: this.resources,
-      add_resource: this.add_resource
-    }
+      add_resource: this.add_resource,
+      delete_resource: this.delete_resource
+    };
   },
 
-  computed:{
-    stored_resource_button_mode(){
-      return this.selected_tab === 'stored-resources' ? null: 'flat';
+  computed: {
+    stored_resource_button_mode() {
+      return this.selected_tab === 'stored-resources' ? null : 'flat';
     },
 
-    add_resource_button_mode(){
-      return this.selected_tab === 'add-resource' ? null: 'flat';
+    add_resource_button_mode() {
+      return this.selected_tab === 'add-resource' ? null : 'flat';
     },
-    
   },
 
   methods: {
@@ -70,11 +71,16 @@ export default {
       this.selected_tab = val;
     },
 
-    add_resource(resource_to_add){
-      resource_to_add['id']= new Date().toISOString();
+    add_resource(resource_to_add) {
+      resource_to_add['id'] = new Date().toISOString();
       this.resources.push(resource_to_add);
-    }
-    
+    },
+
+    delete_resource(resId) {
+      const res_index = this.resources.findIndex((res) => res.id === resId);
+      this.resources.splice(res_index,1);
+      console.log(this.resources.length);
+    },
   },
 };
 </script>
