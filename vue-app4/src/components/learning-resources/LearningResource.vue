@@ -3,7 +3,7 @@
     <base-card>
       <header>
         <h3>{{resource.title}}</h3>
-        <button>Delete</button>
+        <base-button >Delete</base-button>
       </header>
     <p>{{resource.description}}</p>
     <nav>
@@ -15,10 +15,11 @@
 
 
 <script>
+import BaseButton from '../UI/BaseButton.vue';
 
 export default {
-
-  props: ['resource'],
+    props: ["resource"],
+    components: { BaseButton }
 };
 </script>
 
