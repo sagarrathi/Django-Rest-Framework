@@ -96,7 +96,7 @@
       </div>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
     </div>
 
     <div class="form-control">
@@ -128,6 +128,7 @@ export default {
             how: null,
             confirm_ans: false,
             user_name_validity: "invalid",
+            rating:null,
         };
     },
     methods: {
@@ -148,6 +149,8 @@ export default {
             console.log("Checkbox", this.interest);
             console.log("RADIO", this.how);
             console.log("Confirm", this.confirm_ans);
+            console.log("Rating", this.rating);
+            
             this.interest = null;
             this.how = null;
             this.confirm_ans = false;
