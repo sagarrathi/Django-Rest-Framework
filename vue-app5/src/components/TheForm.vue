@@ -2,11 +2,11 @@
   <form @submit.prevent="submit_form">
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" ref="user_name" />
+      <input id="user-name" name="user-name" type="text" v-model.trim="user_name" />
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" ref="age" />
+      <input id="age" name="age" type="number" ref="age" v-model.number="user_age" />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
@@ -55,10 +55,24 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      user_name:'',
+      user_age:null,
+
+    };
   },
   methods: {
-    submit_form() {},
+    submit_form() {
+      console.log('Username'+ this.user_name);
+
+      this.user_name="";
+      console.log('user_age');
+      console.log(this.user_age);
+      console.log(31);
+      this.user_age=null;
+
+      console.log(this.$refs.age.value+5)
+    },
   },
 };
 </script>
