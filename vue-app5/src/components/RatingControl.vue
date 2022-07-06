@@ -23,15 +23,14 @@ export default {
   //     }
   // },
 
-  computed: {
-    active_option() {
-        return this.modelValue;
-    }
-  },
+//   computed: {
+//     active_option() {
+//         return this.modelValue;
+//     }
+//   },
 
   methods: {
     activate(option) {
-      this.active_option = option;
       this.$emit('update:modelValue', option);
     },
   },
