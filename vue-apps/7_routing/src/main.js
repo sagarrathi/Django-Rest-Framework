@@ -6,6 +6,8 @@ import UsersList from './components/users/UsersList.vue';
 
 import TeamMembers from './components/teams/TeamMembers.vue';
 
+import NotFound from './components/nav/NotFound.vue'
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -13,7 +15,7 @@ const router = createRouter({
     { path: '/teams', component: TeamsList, alias:"/" },
     { path: '/users', component: UsersList },
     { path: '/teams/:teamId', component:TeamMembers, props:true},
-    // { path: '/teams/new'},
+    { path: '/:notFound(.*)',component:NotFound},
 
   ],
   linkActiveClass: 'active'
