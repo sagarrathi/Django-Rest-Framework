@@ -38,13 +38,18 @@ export default {
       const selected_team = this.teams.find((team) => team.id === teamId);
       this.teamName = selected_team.name;
       const members = selected_team.members;
+      const selected_users=[];
+    
       for (const member of members) {
         const selected_user = this.users.find((user) => user.id === member);
-        this.members.push(selected_user);
+        selected_users.push(selected_user);
       }
+
+      this.members=selected_users;
       // }
     },
   },
+  
   created() {
     this.get_team_members(this.teamId);
     },
