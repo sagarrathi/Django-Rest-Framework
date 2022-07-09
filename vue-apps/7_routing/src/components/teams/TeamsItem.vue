@@ -8,13 +8,15 @@
 
 <script>
 export default {
-  props: ['id','name', 'memberCount'],
+  props: ['id', 'name', 'memberCount'],
 
   computed: {
-    team_member_link(){
-      return '/teams/'+this.id
-    }
-  }
+    team_member_link() {
+      return { name: 'team-members', 
+      params: { 
+        teamId: this.id } };
+    },
+  },
 };
 </script>
 
