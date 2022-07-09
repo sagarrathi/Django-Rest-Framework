@@ -18,9 +18,13 @@ export default {
     UserItem,
   },
   inject: ['users'],
+
+  
   methods: {
     run_code() {
       console.log('Doing something Doing something');
+      this.$router.push('/teams');
+
     },
   },
 };
