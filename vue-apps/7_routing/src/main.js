@@ -6,19 +6,24 @@ import UsersList from './components/users/UsersList.vue';
 
 import TeamMembers from './components/teams/TeamMembers.vue';
 
-import NotFound from './components/nav/NotFound.vue'
+import NotFound from './components/nav/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    // { path: '/', redirect: '/teams' },
-    { path: '/teams', component: TeamsList, alias:"/" },
-    { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component:TeamMembers, props:true},
-    { path: '/:notFound(.*)',component:NotFound},
+    { path: '/', redirect: '/teams' },
+    {
+      path: '/teams',
+      component: TeamsList,
+      children: [
+        { path: ':teamId', component: TeamMembers, props: true },
+      ],
+    },
 
+    { path: '/users', component: UsersList },
+    { path: '/:notFound(.*)', component: NotFound },
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
 });
 
 const app = createApp(App);
