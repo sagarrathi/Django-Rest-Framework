@@ -44,7 +44,7 @@ const router = createRouter({
   ],
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {
-    console.log('to', to, 'from', from, 'saved', savedPosition);
+    // console.log('to', to, 'from', from, 'saved', savedPosition);
     if (savedPosition) {
       return savedPosition;
     }
@@ -53,7 +53,16 @@ const router = createRouter({
   },
 });
 
-router.beforeEach(function (to, from, next) {});
+router.beforeEach(function (to, from, next) {
+  console.log('Gloabl beforeEach');
+  console.log("to", to, "from", from,  "next", next);
+  // if (to.name=='team-members'){
+  //   next();
+  // } else {
+  //   next(   {name:'team-members', params: {teamId: 't2'}});
+  // }
+  next();  
+});
 
 const app = createApp(App);
 
