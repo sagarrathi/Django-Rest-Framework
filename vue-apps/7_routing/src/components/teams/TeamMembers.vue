@@ -52,6 +52,7 @@ export default {
   
   created() {
     this.get_team_members(this.teamId);
+    console.log(this.$route.query)
     },
 
   watch: {
