@@ -5,17 +5,16 @@
   </div>
 
   <div class="container">
-    <Transition name="para">
-    <p v-if="paraIsVisible"> THis is only some time visible </p>
-    </Transition>
+    <transition name="para">
+      <p v-if="paraIsVisible">THis is only some time visible</p>
+    </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
-    
   </div>
-  
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
+
+    <base-modal @close="hideDialog" :open="dialogIsVisible">
+      <p>This is a test dialog!</p>
+      <button @click="hideDialog">Close it!</button>
+    </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -27,7 +26,7 @@ export default {
     return {
       dialogIsVisible: false,
       animatedBlock: false,
-      paraIsVisible:false,
+      paraIsVisible: false,
     };
   },
 
@@ -43,9 +42,9 @@ export default {
       this.animatedBlock = true;
     },
 
-    toggleParagraph () {
+    toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
-    }
+    },
   },
 };
 </script>
@@ -93,11 +92,6 @@ button:active {
   border-radius: 12px;
 }
 
-.animate {
-  /* transform:translateX(-150px); */
-  animation: slide-fade 3s ease-out forwards;
-}
-
 /* .v-enter-from {
   opacity: 0;
   transform: translateY(-30px);
@@ -110,22 +104,25 @@ transition: all 2s ease;
   transform: translateY(0px);
 } */
 
+@keyframes slide-fade {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  70% {
+    transform: translateX(-120px) scale(1.1);
+  }
 
-.para-enter-active{
+  100% {
+    transform: translateX(-150px) scale(1);
+  }
+}
+
+.para-enter-active {
   animation: slide-fade 2s ease-out;
 }
 
-@keyframes slide-fade {
-0% {
-  transform: translateX(0) scale(1);
-  }
-70% {
-  transform: translateX(-120px) scale(1.1);
-}
 
-100% {
-  transform: translateX(-150px) scale(1);
-}
 
-}
+
+
 </style>
