@@ -1,11 +1,14 @@
 <template>
   <div class="container">
+    <user-list></user-list>>
+  </div>
+  <div class="container">
     <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock()">Animate</button>
   </div>
 
   <div class="container">
-    <transition name="para" @before-leave="beforeEnter">
+    <transition name="para" @before-leave="beforeEnter" :css="false">
       <p v-if="paraIsVisible">THis is only some time visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -28,6 +31,7 @@
 </template>
 
 <script>
+import UserList from './components/UserList.vue';
 export default {
   data() {
     return {
@@ -37,7 +41,6 @@ export default {
       usersAreVisible: false,
     };
   },
-
   methods: {
     showDialog() {
       this.dialogIsVisible = true;
@@ -45,15 +48,12 @@ export default {
     hideDialog() {
       this.dialogIsVisible = false;
     },
-
     animateBlock() {
       this.animatedBlock = true;
     },
-
     toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
     },
-
     showUsers() {
       this.usersAreVisible = true;
     },
@@ -64,6 +64,7 @@ export default {
       console.log(el);
     },
   },
+  components: {  UserList }
 };
 </script>
 
@@ -71,12 +72,15 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 html {
   font-family: sans-serif;
 }
+
 body {
   margin: 0;
 }
+
 button {
   font: inherit;
   padding: 0.5rem 2rem;
@@ -86,11 +90,13 @@ button {
   color: white;
   cursor: pointer;
 }
+
 button:hover,
 button:active {
   background-color: #a80b48;
   border-color: #a80b48;
 }
+
 .block {
   width: 8rem;
   height: 8rem;
@@ -98,6 +104,7 @@ button:active {
   margin-bottom: 2rem;
   /* transition: transform 3s ease-out; */
 }
+
 .container {
   max-width: 40rem;
   margin: 2rem auto;
@@ -126,6 +133,7 @@ transition: all 2s ease;
   0% {
     transform: translateX(0) scale(1);
   }
+
   70% {
     transform: translateX(-120px) scale(1.1);
   }
