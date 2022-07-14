@@ -11,10 +11,17 @@
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
 
-    <base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal>
+  <div class="container">
+    <transition name="fade-button" mode="out-in">
+    <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
+    <button @click="hideUsers" v-else>Hide users</button>
+    </transition>
+  </div>
+
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
+    <p>This is a test dialog!</p>
+    <button @click="hideDialog">Close it!</button>
+  </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -27,6 +34,7 @@ export default {
       dialogIsVisible: false,
       animatedBlock: false,
       paraIsVisible: false,
+      usersAreVisible: false,
     };
   },
 
@@ -45,6 +53,11 @@ export default {
     toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
     },
+
+    showUsers(){this.usersAreVisible=true;},
+    hideUsers(){this.usersAreVisible=false;},
+    beforeEnrer(){console.log("before enter")}
+
   },
 };
 </script>
@@ -121,8 +134,23 @@ transition: all 2s ease;
   animation: slide-fade 2s ease-out;
 }
 
+.fade-button-enter-from,
+.fade-button-leave-to{
+  opacity: 0;
+}
+
+.fade-button-enter-active{
+  transition: opacity .5s ease-out;
+}
+
+.fade-button-leave-active{
+  transition: opacity .5s ease-in;
+}
 
 
-
+.fade-button-enter-to,
+.fade-button-leave-from{
+  opacity: 1;
+}
 
 </style>
