@@ -29,7 +29,7 @@ export default {
         },
         addUser() {
             const enteredUserName = this.$refs.userNameInput.value;
-            this.users.push(enteredUserName)
+            this.users.unshift(enteredUserName)
         },
     },
 }
@@ -68,6 +68,7 @@ li {
 
 .user-list-leave-active {
     transition: all 2s ease-in;
+    position: absolute;
 }
 
 .user-list-leave-to{
@@ -75,6 +76,9 @@ li {
     transform: translateX(30px);
 }
 
+.user-list-move{
+    transition: transform 2s ease;
+}
 
 
 </style>
