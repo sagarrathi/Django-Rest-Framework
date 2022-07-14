@@ -5,7 +5,7 @@
   </div>
 
   <div class="container">
-    <transition name="para">
+    <transition name="para" @before-leave="beforeEnter">
       <p v-if="paraIsVisible">THis is only some time visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -13,8 +13,8 @@
 
   <div class="container">
     <transition name="fade-button" mode="out-in">
-    <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
-    <button @click="hideUsers" v-else>Hide users</button>
+      <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
+      <button @click="hideUsers" v-else>Hide users</button>
     </transition>
   </div>
 
@@ -54,10 +54,15 @@ export default {
       this.paraIsVisible = !this.paraIsVisible;
     },
 
-    showUsers(){this.usersAreVisible=true;},
-    hideUsers(){this.usersAreVisible=false;},
-    beforeEnrer(){console.log("before enter")}
-
+    showUsers() {
+      this.usersAreVisible = true;
+    },
+    hideUsers() {
+      this.usersAreVisible = false;
+    },
+    beforeEnter(el) {
+      console.log(el);
+    },
   },
 };
 </script>
@@ -135,22 +140,20 @@ transition: all 2s ease;
 }
 
 .fade-button-enter-from,
-.fade-button-leave-to{
+.fade-button-leave-to {
   opacity: 0;
 }
 
-.fade-button-enter-active{
-  transition: opacity .5s ease-out;
+.fade-button-enter-active {
+  transition: opacity 0.5s ease-out;
 }
 
-.fade-button-leave-active{
-  transition: opacity .5s ease-in;
+.fade-button-leave-active {
+  transition: opacity 0.5s ease-in;
 }
-
 
 .fade-button-enter-to,
-.fade-button-leave-from{
+.fade-button-leave-from {
   opacity: 1;
 }
-
 </style>
