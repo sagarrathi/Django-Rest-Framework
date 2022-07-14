@@ -5,7 +5,7 @@
   </div>
 
   <div class="container">
-    <Transition>
+    <Transition name="para">
     <p v-if="paraIsVisible"> THis is only some time visible </p>
     </Transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -111,7 +111,7 @@ transition: all 2s ease;
 } */
 
 
-.v-enter-active{
+.para-enter-active{
   animation: slide-fade 2s ease-out;
 }
 
