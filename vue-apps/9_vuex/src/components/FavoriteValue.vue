@@ -7,7 +7,7 @@
 export default {
     computed: {
     counter() {
-      return this.$store.getters.noramlizedCounter;
+      return this.$store.getters['numbers/noramlizedCounter'];
     //   console.log(this.state)
     },
   },
