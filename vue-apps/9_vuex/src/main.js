@@ -10,11 +10,35 @@ const store = createStore({
     };
   },
   mutations: {
-    increment(state){
-     state.counter +=1 
-    }
-  }
+    increment(state) {
+      setTimeout(() => {
+        state.counter += 1;
+      }, 2000);
+    },
 
+    increase(state, payload) {
+      state.counter += payload.value;
+    },
+  },
+  actions: {
+    increment()
+  },
+
+  getters: {
+    finalCounter(state) {
+      return state.counter * 10;
+    },
+    noramlizedCounter(state, getters) {
+      const finalCounter = getters.finalCounter;
+      if (finalCounter < 0) {
+        return 0;
+      }
+      if (finalCounter > 100) {
+        return 100;
+      }
+      return finalCounter;
+    },
+  },
 });
 
 const app = createApp(App);
