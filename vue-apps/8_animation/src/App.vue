@@ -5,7 +5,7 @@
   </div>
 
   <div class="container">
-    <transition name="para" @before-leave="beforeEnter">
+    <transition name="para" @before-leave="beforeEnter" @enter="enter">
       <p v-if="paraIsVisible">THis is only some time visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -62,6 +62,19 @@ export default {
     },
     beforeEnter(el) {
       console.log(el);
+      el.style.opacity =0;
+    },
+
+    enter(el, done) {
+      const interval = setInterval(function () {
+        let round = 1;
+        el.style.opacity = round * 0.1;
+        round = round + 1;
+        if (round > 10) {
+          clearInterval(interval);
+        }
+        done;
+      }, 20);
     },
   },
 };
@@ -135,9 +148,9 @@ transition: all 2s ease;
   }
 }
 
-.para-enter-active {
+/* .para-enter-active {
   animation: slide-fade 2s ease-out;
-}
+} */
 
 .fade-button-enter-from,
 .fade-button-leave-to {
