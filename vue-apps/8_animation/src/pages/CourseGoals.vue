@@ -1,14 +1,10 @@
 <template>
-<div clas="contianer">
+  <div clas="contianer">
     <h2>Course Goasl</h2>
-</div>
-
+    <router-link to="/">All Users</router-link>
+  </div>
 </template>
 
+<script></script>
 
-<script>
-</script>
-
-
-<style>
-</style>
+<style></style>

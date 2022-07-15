@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <router-view></router-view>
+    <router-view v-slot="slotProps">
+      <transition name="fade-button" mode="out-in"> 
+          <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -39,7 +43,7 @@ export default {
     },
     beforeEnter(el) {
       console.log(el);
-      el.style.opacity =0;
+      el.style.opacity = 0;
     },
 
     enter(el, done) {
@@ -145,5 +149,17 @@ transition: all 2s ease;
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
+}
+
+.route-enter-from {
+}
+.route-enter-active {
+  animation: slide-fade 2s ease-out;
+}
+.route-enter-to {
+}
+
+.route-leave-active {
+  animation: slide-fade 2s ease-in;
 }
 </style>
