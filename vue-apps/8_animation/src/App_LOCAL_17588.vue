@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-<<<<<<< HEAD
     <user-list></user-list>>
   </div>
   <div class="container">
@@ -28,13 +27,6 @@
   </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
-=======
-    <router-view v-slot="slotProps">
-      <transition name="fade-button" mode="out-in"> 
-          <component :is="slotProps.Component"></component>
-      </transition>
-    </router-view>
->>>>>>> e1819f074c6f7bfc3370348563f60299826ccc1e
   </div>
 </template>
 
@@ -70,19 +62,6 @@ export default {
     },
     beforeEnter(el) {
       console.log(el);
-      el.style.opacity = 0;
-    },
-
-    enter(el, done) {
-      const interval = setInterval(function () {
-        let round = 1;
-        el.style.opacity = round * 0.1;
-        round = round + 1;
-        if (round > 10) {
-          clearInterval(interval);
-        }
-        done;
-      }, 20);
     },
   },
   components: {  UserList }
@@ -164,9 +143,9 @@ transition: all 2s ease;
   }
 }
 
-/* .para-enter-active {
+.para-enter-active {
   animation: slide-fade 2s ease-out;
-} */
+}
 
 .fade-button-enter-from,
 .fade-button-leave-to {
@@ -184,17 +163,5 @@ transition: all 2s ease;
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
-}
-
-.route-enter-from {
-}
-.route-enter-active {
-  animation: slide-fade 2s ease-out;
-}
-.route-enter-to {
-}
-
-.route-leave-active {
-  animation: slide-fade 2s ease-in;
 }
 </style>
