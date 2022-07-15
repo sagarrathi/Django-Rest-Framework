@@ -2,6 +2,7 @@
   <button @click="login" v-if="!isAuth">Login</button>
 
   <button @click="logout" v-if="isAuth">Logout</button>
+  <p>{{ testAuth }}</p>
 </template>
 
 <script>
@@ -19,6 +20,10 @@ export default {
   computed: {
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
+    },
+
+    testAuth() {
+      return this.$store.getters.testAuth;
     },
   },
 };

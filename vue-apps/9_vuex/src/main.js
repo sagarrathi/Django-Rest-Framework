@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 import App from './App.vue';
 
 const counterModule = {
+  namespaced: true,
   state() {
     return { counter: 0 };
   },
@@ -13,6 +14,7 @@ const counterModule = {
     },
 
     increase(state, payload) {
+      console.log('state', state);
       state.counter += payload.value;
     },
   },
@@ -27,8 +29,15 @@ const counterModule = {
       context.commit('increase', payload);
       console.log(context);
     },
+
+
   },
   getters: {
+    testAuth(state, getters, rootState, rootGetter) {
+      console.log(state, getters, rootGetter);
+      return  rootState.isLoggedIn;
+    },
+
     finalCounter(state) {
       return state.counter * 10;
     },
@@ -45,11 +54,9 @@ const counterModule = {
   },
 };
 
-
-
 const store = createStore({
   modules: {
-    numbers:counterModule,
+    numbers: counterModule,
   },
 
   state() {
