@@ -1,31 +1,45 @@
-import {createStore} from 'vuex';
+import { createStore } from 'vuex';
 
-// import rootMutations from './mutation.js'
-// import rootActions from './actions.js'
-// import rootGetters from './actions.js'
-
-import productModule from './modules/products.js'
-import cartModule from './modules/cart.js'
-
+import productModule from './modules/products.js';
+import cartModule from './modules/cart.js';
 
 const store = createStore({
-    modules: {
-        prods:productModule,
-        cart:cartModule,
+  modules: {
+    prods: productModule,
+    cart: cartModule,
+  },
+
+  state() {
+    return {
+      isLoggedIn: false,
+    };
+  },
+
+  mutations: {
+    login(state) {
+      state.isLoggedIn = true;
     },
 
-    // state() {return {
-    //     isLoggedIn: false,
-    // }},
-    
-    // mutations:rootMutations,
-    // actions:rootActions,
-    // getters:rootGetters
+    logout(state) {
+      state.isLoggedIn = false;
+    },
+  },
 
+  actions: {
+    login(context) {
+      context.commit('login');
+    },
+
+    logout(context) {
+      context.commit('logout');
+    },
+  },
+
+  getters: {
+    IsAuthenticated(state) {
+      return state.isLoggedIn;
+    },
+  },
 });
 
 export default store;
-
-
-
-
