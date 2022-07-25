@@ -1,0 +1,102 @@
+FROM ubuntu:focal
+
+USER root
+RUN chsh -s /bin/bash
+SHELL ["/bin/bash", "-c"]
+
+
+############ Install Base Packages ###########################
+RUN apt-get update -y
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Kolkata
+RUN apt-get install -y tzdata
+RUN apt-get install sudo -y -o DPkg::Options::="--force-confnew" 
+RUN apt-get install nano htop openvpn wget telnet python3-pip -y
+RUN apt-get install fonts-indic fonts-inconsolata fonts-croscore -y
+RUN echo "hi"
+# RUN fc-cache -fv
+
+############## Give user sudo acces without password ################
+RUN useradd -m -d /opt/airflow -u 1000  airflow
+RUN usermod -aG sudo airflow
+RUN usermod -aG root airflow
+RUN echo "airflow ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+###########################################
+
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt install ./google-chrome-stable_current_amd64.deb -y
+
+USER airflow
+
+WORKDIR /opt/airflow
+
+RUN echo "export PATH=~/.local/bin:${PATH}" >>  ~/.bashrc
+RUN echo "export PATH=/opt/airflow/.local/bin:${PATH}" >>  ~/.bashrc
+RUN source ~/.bashrc
+RUN exec bash
+
+RUN pip install 'apache-airflow[postgres, pandas, numpy]==2.3.2' \
+    --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.2.5/constraints-3.7.txt"
+RUN pip install airflow-code-editor black 
+RUN pip install html2image matplotlib openpyxl xlsxwriter opencv-python
+RUN pip install gspread pydrive pytelegrambotapi mysql-connector-python psycopg2-binary 
+RUN pip install notebook opencv-python
+
+
+ENV AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql://air:air@127.0.0.1:5433/air
+
+ENV AIRFLOW__CORE__PLUGINS_FOLDER=/opt/airflow/airflow/plugins
+ENV AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/airflow/dags
+
+
+ENV AIRFLOW__CORE__EXECUTOR=LocalExecutor
+ENV AIRFLOW__CORE__DEFAULT_TIMEZONE=Asia/Calcutta
+ENV AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG=1
+ENV AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG=1
+ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
+ENV AIRFLOW__CORE__PARALLELISM=2
+ENV AIRFLOW__CORE__DAG_CONCURRENCY=1
+ENV AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=600
+ENV AIRFLOW__CORE__MIN_SERIALIZED_DAG_UPDATE_INTERVAL=30
+ENV AIRFLOW__CORE__MIN_SERIALIZED_DAG_FETCH_INTERVAL=10
+ENV AIRFLOW__CORE__KILLED_TASK_CLEANUP_TIME=604800
+ENV AIRFLOW__CORE__DAG_FILE_PROCESSOR_TIMEOUT=5000
+ENV AIRFLOW__WEBSERVER__WEB_SERVER_HOST=localhost
+
+ENV AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL=60
+ENV AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC=600
+ENV AIRFLOW__SCHEDULER__SCHEDULER_HEALTH_CHECK_THRESHOLD=1200
+ENV AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=120
+ENV AIRFLOW__SCHEDULER__RUN_DURATION=3600
+ENV AIRFLOW__SCHEDULER__SCHEDULE_AFTER_TASK_EXECUTION=False
+
+
+ENV AIRFLOW__WEBSERVER__DEFAULT_UI_TIMEZONE=Asia/Calcutta
+ENV AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
+ENV AIRFLOW__WEBSERVER__RELOAD_ON_PLUGIN_CHANGE=True
+ENV AIRFLOW__WEBSERVER__WORKERS=4
+ENV AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT=2000
+ENV AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT=3000
+ENV AIRFLOW__WEBSERVER__WORKER_REFRESH_INTERVAL=18000
+ENV AIRFLOW__WEBSERVER__SESSION_LIFETIME_MINUTES=30
+ENV AIRFLOW__WEBSERVER__RELOAD_ON_PLUGIN_CHANGE=True
+ENV AIRFLOW__WEBSERVER__WEB_SERVER_HOST=localhost
+ENV AIRFLOW__WEBSERVER__LOG_FETCH_TIMEOUT_SEC=30
+
+
+
+ENV AIRFLOW__OPERATORS__DEFAULT_RAM=2048
+ENV AIRFLOW__OPERATORS__DEFAULT_DISK=2048
+
+ENV AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+
+COPY ./web_start.sh ./
+RUN sudo chown 1000:1000 ./web_start.sh
+RUN sudo chmod +x ./web_start.sh
+
+
+
+ENV PATH "$PATH:~/.local/bin"
+ENV PATH "$PATH:/opt/airflow/.local/bin"
+
+CMD ["sleep", "infinity"]

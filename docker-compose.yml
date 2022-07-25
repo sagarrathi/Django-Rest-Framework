@@ -1,0 +1,142 @@
+version: '3.6'
+
+services:
+  db_air:
+    image: postgres
+    environment:
+      - POSTGRES_USER=air
+      - POSTGRES_PASSWORD=air
+      - POSTGRES_DB=air
+    restart: "always"
+    command: -h 127.0.0.1 -p 5433
+    expose:
+    - "5433"
+    ports: 
+      - 5433:5433
+    network_mode: "host"
+    container_name: db_air
+    user: "1000:1000"
+    volumes: 
+      - ./db_air:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: .
+      dockerfile: airflow_dockerfile
+    entrypoint: ./web_start.sh
+    healthcheck:
+      test: ps -ef | grep "airflow webserver" |grep -v "grep" > dev/null
+      interval: 30s
+      timeout: 30s
+      retries: 100
+    restart: "always"
+    ports: 
+      - 8090:8090
+      - 8793:8793
+    expose:
+    - "8090"
+    - "8793"
+    network_mode: "host"
+    cap_add: 
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    container_name: web
+    user: "airflow"
+    depends_on:
+      - "db_air"
+    volumes:
+      - ./airflow:/opt/airflow/airflow
+      - ../plugins:/opt/airflow/airflow/plugins
+      - ../dags:/opt/airflow/airflow/dags
+      - ../auth:/opt/airflow/airflow/auth
+
+  sch:
+    build:
+      context: .
+      dockerfile: airflow_dockerfile
+    entrypoint: airflow scheduler
+    healthcheck:
+      test: ps -ef | grep "airflow scheduler" |grep -v "grep" > dev/null
+      interval: 30s
+      timeout: 30s
+      retries: 100
+    restart: "always"
+    ports: 
+      - 8090:8090
+      - 8793:8793
+    expose:
+    - "8090"
+    - "8793"
+    network_mode: "host"
+    cap_add: 
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    container_name: sch
+    user: "airflow"
+    depends_on:
+      - "db_air"
+    volumes:
+      - ./airflow:/opt/airflow/airflow
+      - ../plugins:/opt/airflow/airflow/plugins
+      - ../dags:/opt/airflow/airflow/dags
+      - ../auth:/opt/airflow/airflow/auth
+
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=sagar.rathi@dvarakgfs.com
+  #     - PGADMIN_DEFAULT_PASSWORD=admin
+  #     - PGADMIN_LISTEN_ADDRESS=127.0.0.1
+  #     - PGADMIN_LISTEN_PORT=5050
+  #   restart: "no"
+  #   expose:
+  #   - "5050"
+  #   ports:
+  #     - 5050:5050
+  #   network_mode: "host"
+  #   container_name: pgadmin
+  #   user: "1000:1000"
+  #   volumes: 
+  #     - ./db_admin:/var/lib/pgadmin
+        
+
+  # db_super:
+  #   image: postgres
+  #   environment:
+  #     - POSTGRES_USER=super
+  #     - POSTGRES_PASSWORD=super
+  #     - POSTGRES_DB=super
+  #   restart: "always"
+  #   command: -h 127.0.0.1 -p 5422
+  #   expose:
+  #   - "5422"
+  #   ports: 
+  #     - 5422:5422
+  #   network_mode: "host"
+  #   container_name: db_super
+  #   user: 1000:1000
+  #   volumes: 
+  #     - ./db_super:/var/lib/postgresql/data
+
+  # superset:
+  #   build:
+  #     context: .
+  #     dockerfile: superset_dockerfile
+  #   environment:
+  #     - SUPERSET_CONFIG_PATH=/app/superset_config.py
+  #   restart: "always"
+  #   ports: 
+  #     - 8089:8089
+  #   network_mode: "host"
+  #   container_name: superset
+  #   user: 1000:1000
+  #   volumes:
+  #     - ./superset/app:/app
+
+          
+      
+     
+  
