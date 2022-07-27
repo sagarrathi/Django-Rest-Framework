@@ -1,23 +1,18 @@
 import json
+from pyexpat import model
 from django.http import JsonResponse
 
-def api_home(request, *args, **kwargs):
-    
-    print(request.GET)
-    print(request.POST)
-    
-    body=request.body
-    data={}
+from product.models import Product
 
-    try: 
-        data=json.loads(body)
-    except:
-        pass
+def api_home(request, *args, **kwargs):
+    model_data=Product.objects.all().order_by("?").first()
+    data={}
     
-    # print(data)
-    # data['headers']=request.headers
-    # json.dumps
-    data['params']=request.GET
-    data['headers']=dict(request.headers)
-    data['content_type']=request.content_type
+    if model_data:
+        data['id']=model_data.id
+        data['title']=model_data.title
+        data['content']=model_data.content
+        data['price']=model_data.price
+
+    print(data)    
     return JsonResponse(data)
