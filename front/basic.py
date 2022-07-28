@@ -19,7 +19,7 @@ get_response=requests.get(endpoint) # API
 
 print("headers",get_response.headers)
 print("text",get_response.text)  
-print("json",get_response.json())
+# print("json",get_response.json())
 
 # print(get_response.status_code) 
  
