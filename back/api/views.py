@@ -15,9 +15,12 @@ def api_home(request, *args, **kwargs):
 
     DRF API View 
     """
-    data=request.data
-    return Response(data)
-    # instance=Product.objects.all().order_by("?").first()
+    serializer=ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        instance=serializer.save()
+        print("saved data",instance)
+        return Response(serializer.data)
+    # instance=Product.n objects.all().order_by("?").first()
     # data={}
     # if instance:
     #     data=ProductSerializer(instance).data
