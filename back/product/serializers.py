@@ -3,6 +3,8 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    my_discount=serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Product
         fields = [
@@ -10,6 +12,9 @@ class ProductSerializer(serializers.ModelSerializer):
             'content',
             'price',
             'sale_price',
-            'get_discount',    
-
+            'my_discount',    
         ]
+    # Obj is instance of object being called
+    # Thuis prevents dynamic instacne whihc then have to be sourced
+    def get_my_discount(self, obj):
+        return  obj.get_discount()
