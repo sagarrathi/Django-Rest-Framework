@@ -20,4 +20,5 @@ def api_home(request, *args, **kwargs):
         # ehile .data does not
         print("serializer.data",serializer.data)
         return Response(serializer.data)
-    
+    else:
+        return Response({"message":"invalid data"})
