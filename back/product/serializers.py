@@ -17,4 +17,7 @@ class ProductSerializer(serializers.ModelSerializer):
     # Obj is instance of object being called
     # Thuis prevents dynamic instacne whihc then have to be sourced
     def get_my_discount(self, obj):
-        return  obj.get_discount()
+        try: 
+            return  obj.get_discount()
+        except:
+            return None
