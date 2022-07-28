@@ -1,5 +1,7 @@
 import json
-from pyexpat import model
+
+from django.forms.models import model_to_dict
+
 from django.http import JsonResponse
 
 from product.models import Product
@@ -9,10 +11,7 @@ def api_home(request, *args, **kwargs):
     data={}
     
     if model_data:
-        data['id']=model_data.id
-        data['title']=model_data.title
-        data['content']=model_data.content
-        data['price']=model_data.price
+        data=model_to_dict(model_data, fields=["id", "title"])
 
     print(data)    
     return JsonResponse(data)
