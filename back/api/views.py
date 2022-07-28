@@ -12,16 +12,12 @@ from product.serializers import ProductSerializer
 @api_view(["POST"])
 def api_home(request, *args, **kwargs):
     """ 
-
     DRF API View 
     """
     serializer=ProductSerializer(data=request.data)
     if serializer.is_valid():
-        instance=serializer.save()
-        print("saved data",instance)
+        # serializer.save() this creates the instance
+        # ehile .data does not
+        print("serializer.data",serializer.data)
         return Response(serializer.data)
-    # instance=Product.n objects.all().order_by("?").first()
-    # data={}
-    # if instance:
-    #     data=ProductSerializer(instance).data
-    # return Response(data)
+    
