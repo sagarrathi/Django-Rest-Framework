@@ -9,14 +9,14 @@ from rest_framework.response import Response
 from product.models import Product
 from product.serializers import ProductSerializer
 
-# @api_view(["POST"])
+@api_view(["POST"])
 def api_home(request, *args, **kwargs):
     """ 
 
     DRF API View 
     """
     data=request.data
-    return JsonResponse(data)
+    return Response(data)
     # instance=Product.objects.all().order_by("?").first()
     # data={}
     # if instance:
