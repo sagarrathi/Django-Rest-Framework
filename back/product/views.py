@@ -1,5 +1,5 @@
 # Rest Framework
-from rest_framework import generics, mixins
+from rest_framework import generics, mixins, permissions, authentication
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -13,7 +13,8 @@ from django.shortcuts import get_object_or_404
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes=[]
+    authentication_classes=[authentication.SessionAuthentication]
+    permission_classes=[permissions.DjangoModelPermissions]
 
     def perform_create(self, serializer):
         # print(serializer.validated_data)
@@ -52,6 +53,9 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
+
+    authentication_classes=[authentication.SessionAuthentication]
+    permission_classes=[permissions.DjangoModelPermissions]
 
     def perform_update(self, serializer):
         instance = serializer.save()
