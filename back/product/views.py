@@ -1,12 +1,13 @@
-# Create your views here.
+# Rest Framework
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-#from django.htp import hhtp404
+# Django related
 from .models import Product
 from .serializers import ProductSerializer
-
+# from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset=Product.objects.all()
@@ -47,12 +48,23 @@ class ProductListAPIView(generics.ListAPIView):
 product_list_view=ProductListAPIView.as_view()
 
 @api_view(["GET","POST"])
-def product_alt_view(request, *args, **kwargs):
+def product_alt_view(request,pk=None,  *args, **kwargs):
     method=request.method
     if method=='GET':
+        if pk is not None:
+            # Detail
+            queryset=Product.objects.filter(pk=pk)
+            if not queryset.exist():
+                raise Http404
+
+            return Response()
+       
         # list data 
-        pass
+        queryset=Product.objects.all()
+        data=ProductSerializer(queryset, many=True).data
+        return Response(data)
     if method=='POST':
+        # make data
         serializer=ProductSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True): #Raise expection provides frindly error
             # serializer.save() this creates the instance
