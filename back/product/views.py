@@ -16,8 +16,8 @@ from django.shortcuts import get_object_or_404
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes=[authentication.SessionAuthentication]
-    permission_classes=[permissions.IsAdminUser, IsStaffEditorPermission]
+    authentication_classes = [authentication.TokenAuthentication,authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
     # permission_classes=[IsStaffEditorPermission]
 
@@ -59,8 +59,8 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     serializer_class = ProductSerializer
     lookup_field = 'pk'
 
-    authentication_classes=[authentication.SessionAuthentication]
-    permission_classes=[permissions.DjangoModelPermissions]
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.DjangoModelPermissions]
 
     def perform_update(self, serializer):
         instance = serializer.save()
@@ -118,20 +118,20 @@ class ProductMixinAPIView(
         mixins.RetrieveModelMixin,
         generics.GenericAPIView):
 
-    queryset=Product.objects.all()
-    serializer_class=ProductSerializer
-    lookup_field='pk'
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = 'pk'
 
     def get(self, request, *args, **kwargs):
         print(args, kwargs)
-        pk=kwargs["pk"]
+        pk = kwargs["pk"]
         if pk is not None:
             return retrieve(request, *args, **kwargs)
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
-        
+
     def perform_create(self, serializer):
         title = serializer.validated_data.get('title')
         content = serializer.validated_data.get('content') or None
@@ -139,6 +139,6 @@ class ProductMixinAPIView(
         if content is None:
             content = "this is a single view doing cool stuff"
         instance = serializer.save(content=content)
- 
-    
-product_mixin_view=ProductMixinAPIView.as_view()
+
+
+product_mixin_view = ProductMixinAPIView.as_view()
