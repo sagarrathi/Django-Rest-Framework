@@ -1,5 +1,5 @@
 # Rest Framework
-from rest_framework import generics
+from rest_framework import generics, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # lookup_field  = 'pk
+    permission_classes=[]
 
     def perform_create(self, serializer):
         # print(serializer.validated_data)
@@ -22,7 +22,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
         print("content is none")
         if content is None:
             content = title
-        instance=serializer.save(content=content)
+        instance = serializer.save(content=content)
 
 
 product_list_create_view = ProductListCreateAPIView.as_view()
@@ -31,7 +31,8 @@ product_list_create_view = ProductListCreateAPIView.as_view()
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-     # lookup_field  = 'pk
+
+    # lookup_field  = 'pk
 product_detail_view = ProductDetailAPIView.as_view()
 
 
@@ -42,6 +43,7 @@ class ProductListAPIView(generics.ListAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
     # lookup_field  = 'pk
 product_list_view = ProductListAPIView.as_view()
 
@@ -54,7 +56,9 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         instance = serializer.save()
         if not instance.content:
-            instance.content=instance.title
+            instance.content = instance.title
+
+
 product_update_view = ProductUpdateAPIView.as_view()
 
 
@@ -65,6 +69,8 @@ class ProductDeleteAPIView(generics.DestroyAPIView):
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
+
+
 product_delete_view = ProductDeleteAPIView.as_view()
 
 
@@ -95,3 +101,35 @@ def product_alt_view(request, pk=None,  *args, **kwargs):
             return Response(serializer.data)
 
         return Response({"message": "title cannot be empty "}, status=404)
+
+
+class ProductMixinAPIView(
+        mixins.ListModelMixin,
+        mixins.CreateModelMixin,
+        mixins.RetrieveModelMixin,
+        generics.GenericAPIView):
+
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer
+    lookup_field='pk'
+
+    def get(self, request, *args, **kwargs):
+        print(args, kwargs)
+        pk=kwargs["pk"]
+        if pk is not None:
+            return retrieve(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+        
+    def perform_create(self, serializer):
+        title = serializer.validated_data.get('title')
+        content = serializer.validated_data.get('content') or None
+        print("content is none")
+        if content is None:
+            content = "this is a single view doing cool stuff"
+        instance = serializer.save(content=content)
+ 
+    
+product_mixin_view=ProductMixinAPIView.as_view()
