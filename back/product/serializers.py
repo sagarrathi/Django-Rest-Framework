@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.reverse import reverse
 from .models import Product
 
-from .validators import validate_title
+from .validators import validate_title, validate_title_2
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     email = serializers.EmailField(write_only=True)
 
-    title = serializers.CharField(validators=[validate_title])
+    title = serializers.CharField(validators=[validate_title, validate_title_2])
 
     class Meta:
         model = Product
@@ -36,6 +36,11 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale_price',
             'my_discount',
         ]
+
+    def validate_title(self,value):
+        value=str.title(value)
+        return value
+
 
     # Obj is instance of object being called
     # Thuis prevents dynamic instacne whihc then have to be sourced
