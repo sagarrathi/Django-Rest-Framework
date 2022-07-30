@@ -30,8 +30,15 @@ class ProductListCreateAPIView(
         print("content is none")
         if content is None:
             content = title
-        instance = serializer.save(content=content)
+        instance = serializer.save(user=self.request.user, content=content)
 
+    def get_queryset(self, *args, **kawrgs):
+        qs=super().get_queryset(*args, **kawrgs)
+        request =self.request 
+        user=request.user
+        if user.is_authenticated:
+            return Product.objects.none()  
+        return qs.filter(user=request.user)
 
 product_list_create_view = ProductListCreateAPIView.as_view()
 
