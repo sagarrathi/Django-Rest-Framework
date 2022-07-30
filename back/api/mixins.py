@@ -14,9 +14,16 @@ class UserQuerysetMixin():
     """
 
     def get_queryset(self, *args, **kawrgs):
+        user=self.request.user
         lookup_data={}
-        lookup_data[self.user_filed]=self.request.user
+        lookup_data[self.user_filed]=user
+        # lookup_data={"owner":self.request.user}
+
         print(lookup_data)
         qs=super().get_queryset(*args, **kawrgs)
+        if user.is_staff:
+            return qs
+
         print("qs==>",qs)
-        return qs.filter(**lookup_data)
+
+        return qs.filter(**lookup_data) # self.user_field=self.request.user
