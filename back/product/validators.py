@@ -14,10 +14,10 @@ def validate_title(value):
     if qs.exists():
         raise serializers.ValidationError(f"This: {value} is already present")
     return value
-
+ 
 def validate_title_2(value):
     if "hanuman" not in value.lower():
         raise serializers.ValidationError(f"Hanuman Ji needed in :{value}")
     return  value
 
-unique_product_title=UniqueValidator(queryset=Product.objects.all())
+unique_product_title=UniqueValidator(queryset=Product.objects.all(), lookup='iexact')
