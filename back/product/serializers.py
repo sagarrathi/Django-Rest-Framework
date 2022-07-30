@@ -23,14 +23,18 @@ class ProductSerializer(serializers.ModelSerializer):
 
     title = serializers.CharField(validators=[validate_title, validate_title_2])
 
+    name= serializers.CharField(source='title', read_only=True)
+
     class Meta:
         model = Product
         fields = [
+            # 'user',
             'pk',
             'url',
             'edit_url',
             'email',
             'title',
+            'name',
             'content',
             'price',
             'sale_price',
