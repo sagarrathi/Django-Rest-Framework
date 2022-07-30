@@ -32,6 +32,13 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale_price',
             'my_discount',
         ]
+
+    def validate_title(self, value):
+        value=str.title(value)
+        qs= Product.objects.filter(title__iexact=value)
+        if qs.exists():
+            raise serializers.ValidationError(f"This: {value} is already present")
+        return value
     # Obj is instance of object being called
     # Thuis prevents dynamic instacne whihc then have to be sourced
 
@@ -43,10 +50,14 @@ class ProductSerializer(serializers.ModelSerializer):
     #     # return f"/api/products/{obj.pk}/"
     def create(self, validated_data):
         # return Product.object.create(**validated_data) default 
-        emial=validated_data.pop("email")
+        email=validated_data.pop("email")
         obj= super().create(validated_data)
         # email=validated_data.pop
         return obj
+
+    def update(self, instance, validated_data):
+        email=validated_data.pop("email")
+        return super().update(instance, validated_data)
 
     def get_my_discount(self, obj):
         if not hasattr(obj, 'id'):
