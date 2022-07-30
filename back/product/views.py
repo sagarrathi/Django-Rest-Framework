@@ -22,11 +22,7 @@ class ProductListCreateAPIView(
     generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # authentication_classes = [TokenAuthentication,authentication.SessionAuthentication]
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
-
-    # permission_classes=[IsStaffEditorPermission]
-
+   
     def perform_create(self, serializer):
         # print(serializer.validated_data)
         title = serializer.validated_data.get('title')
@@ -45,9 +41,7 @@ class ProductDetailAPIView(
     StaffEditorPermissionMixin):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
-
-    # lookup_field  = 'pk
+  
 product_detail_view = ProductDetailAPIView.as_view()
 
 
@@ -60,9 +54,7 @@ class ProductListAPIView(
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
-
-    # lookup_field  = 'pk
+   
 product_list_view = ProductListAPIView.as_view()
 
 
@@ -71,7 +63,6 @@ class ProductUpdateAPIView(
     generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     lookup_field = 'pk'
 
     def perform_update(self, serializer):
@@ -88,7 +79,6 @@ class ProductDeleteAPIView(
     generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     lookup_field = 'pk'
 
     def perform_destroy(self, instance):
@@ -137,7 +127,6 @@ class ProductMixinAPIView(
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     lookup_field = 'pk'
 
 
