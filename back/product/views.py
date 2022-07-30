@@ -5,12 +5,14 @@ from rest_framework.response import Response
 
 # API Related
 from api.authentication import  TokenAuthentication 
+# from api.permissions import StaffEditorPermission
+from api.mixins import StaffEditorPermissionMixin, UserQuerysetMixin
+# from api.permissions import StaffEditorPermission
 
 # App related
 from .models import Product
 from .serializers import ProductSerializer
-# from api.permissions import StaffEditorPermission
-from api.mixins import StaffEditorPermissionMixin
+
 
 # Django related
 # from django.http import Http404
@@ -18,6 +20,7 @@ from django.shortcuts import get_object_or_404
 
 
 class ProductListCreateAPIView(
+    UserQuerysetMixin,
     StaffEditorPermissionMixin,
     generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -32,13 +35,13 @@ class ProductListCreateAPIView(
             content = title
         instance = serializer.save(user=self.request.user, content=content)
 
-    def get_queryset(self, *args, **kawrgs):
-        qs=super().get_queryset(*args, **kawrgs)
-        request =self.request 
-        user=request.user
-        if user.is_authenticated:
-            return Product.objects.none()  
-        return qs.filter(user=request.user)
+    # def get_queryset(self, *args, **kawrgs):
+    #     qs=super().get_queryset(*args, **kawrgs)
+    #     request =self.request 
+    #     user=request.user
+    #     if not user.is_authenticated:
+    #         return Product.objects.none()  
+    #     return qs.filter(user=request.user)
 
 product_list_create_view = ProductListCreateAPIView.as_view()
 
