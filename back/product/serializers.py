@@ -11,18 +11,21 @@ class ProductSerializer(serializers.ModelSerializer):
         lookup_field='pk',
 
     )
-
     edit_url=serializers.HyperlinkedIdentityField(
         view_name='product-edit',
         lookup_field='pk',
 
     )
+
+    email=serializers.EmailField(write_only=True)
+    
     class Meta:
         model = Product
         fields = [
             'pk',
             'url',
             'edit_url',
+            'email',
             'title',
             'content',
             'price',
@@ -38,6 +41,12 @@ class ProductSerializer(serializers.ModelSerializer):
     #         return None
     #     return reverse("product-edit", kwargs={"pk": obj.pk}, request=request)
     #     # return f"/api/products/{obj.pk}/"
+    def create(self, validated_data):
+        # return Product.object.create(**validated_data) default 
+        emial=validated_data.pop("email")
+        obj= super().create(validated_data)
+        # email=validated_data.pop
+        return obj
 
     def get_my_discount(self, obj):
         if not hasattr(obj, 'id'):
