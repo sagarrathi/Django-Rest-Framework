@@ -3,6 +3,7 @@
 
 #Custom modules
 front/bulma/
+front/logo/
 
 ### Django ###
 *.log
