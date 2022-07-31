@@ -5,6 +5,7 @@
 front/bulma/
 front/logo/
 
+
 ### Django ###
 *.log
 *.pot
