@@ -1,0 +1,26 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+Logout Page
+{% endblock %}
+
+
+{% block body_block %}
+<div class ="container">
+
+    <h1> This is our Logout page</h1>
+
+    <form action="{%url 'social:forms' %}", method="POST">
+            <div class="form-group">
+                {{userform.as_p}} 
+                {% csrf_token %}
+            </div>
+    <input type="submit" class="btn btn-info">
+
+    </form> 
+</div>
+{% endblock %}
+
+
