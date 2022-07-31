@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="monster_bar_style"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="hero_bar_style"></div>
+        </div>
+      </section>
+
+      <section class="container" v-if="game_end">
+        <h2>Game Over</h2>
+        <h3>Winner is: {{winner}}</h3>
+        <button @click="start_game()">Reset</button>
+      </section>
+
+      <section id="controls" v-if="!game_end">
+        <button @click="attack_monster()">ATTACK</button>
+        <button
+          :disabled="may_use_special_attack"
+          @click="attack_monster_special()"
+        >
+          SPECIAL ATTACK
+        </button>
+        <button @click="heal_hero()">HEAL</button>
+        <button @click="surrender()">SURRENDER</button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <ul>
+          <li v-for="log in log_messages">
+            
+            <span :class="{ 'log--player': log.action_by ==='hero' ,'log--monster': log.action_by ==='monster' }">
+              {{log.action_by}} 
+            </span>  
+            
+            <span v-if="log.action_type === 'heals'">
+              heals himself by
+              <span class="log--heal"> 
+                {{log.action_value}} 
+            </span></span>
+
+            <span v-else-if="log.action_type === 'attack' || log.action_type === 'special attack'">
+              used special attacked and deals
+              <span class="log--damage"> 
+                {{log.action_value}} 
+            </span></span>
+
+
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

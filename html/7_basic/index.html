@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- Note: Here usinng inline css is not good -->
+      <!-- <div class="demo" :style="{borderColor: boxA ? 'red': '#ccc'}" @click="box_selected('A')"></div>
+      <div class="demo" :style="{borderColor: boxB ? 'red': '#ccc'}" @click="box_selected('B')"></div>
+      <div class="demo" :style="{borderColor: boxC ? 'red': '#ccc'}" @click="box_selected('C')"></div> -->
+
+      <!-- Note: Code is ahrd to read -->
+      <!-- <div :class="boxA ? 'demo active' : 'demo'"  @click="box_selected('A')"></div>
+      <div :class="boxB ? 'demo active' : 'demo'"  @click="box_selected('B')"></div>
+      <div :class="boxC ? 'demo active' : 'demo'"  @click="box_selected('C')"></div> -->
+
+      <!--Note: Best method  -->
+      <div class="demo" :class="{active:boxA}" @click="box_selected('A')"></div>
+      <div class="demo" :class="{active:boxB}" @click="box_selected('B')"></div>
+      <div class="demo" :class="{active:boxC}" @click="box_selected('C')"></div>
+      <br>
+      <h1>Computed Method Below : </h1>
+      <!-- <hr> -->
+      <br>
+
+      <!--Note: Comuted method  -->
+      <div class="demo" :class="boxAClasses" @click="box_selected('A')"></div>
+      <div class="demo" :class="boxBClasses" @click="box_selected('B')"></div>
+      <div class="demo" :class="boxCClasses" @click="box_selected('C')"></div>
+    
+
+    </section>
+  </body>
+</html>
