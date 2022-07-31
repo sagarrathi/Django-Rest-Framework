@@ -1,0 +1,32 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Form Page </title>
+        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
+        <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+       
+    </head>
+</html>
+<body>
+
+
+    <div class ="container">
+       
+
+        <h1> This is our form</h1>
+
+        <form action="{%url 'social:forms' %}", method="POST">
+                <div class="form-group">
+                    {{form.as_p}} 
+                    {% csrf_token %}
+                </div>
+        <input type="submit" class="btn btn-info">
+
+        </form> 
+
+    </div>
+
+</body>
+</html>
+    

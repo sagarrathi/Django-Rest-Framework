@@ -1,0 +1,18 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+Post Delete
+{% endblock %}
+
+
+{% block body_block %}
+<form method="POST">
+    {% csrf_token %}
+    <p>Arre you sure {{object }}</p>
+    <input type="Submit" name="sumit" value="Confirm">
+</form>
+
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+CBV: list view
+{% endblock %}
+
+
+{% block body_block %}
+<div class ="container">
+
+    <h1>CBV: list view</h1>
+    {% for school in schools %}
+    <h3><li><a href="{{school.id}}">{{school.id}} {{school}}</a></li></h3>
+    {% endfor %}
+
+</div>
+{% endblock %}
+
+
