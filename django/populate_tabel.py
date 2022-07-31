@@ -11,6 +11,7 @@ try:
 except:
     pass
 
+
 user=(1, "dsmonk", "sagar")
 insert_query="INSERT INTO users VALUES (?,?,?)"
 cursor.execute(insert_query, user)
@@ -23,10 +24,10 @@ users=[
 cursor.executemany(insert_query, users)
 
 
-select_query="SELECT * FROM users"
+# select_query="SELECT * FROM users"
 
-for row in cursor.execute(select_query):
-    print(row)
+# for row in cursor.execute(select_query):
+#     print(row)
     
 connection.commit()
 connection.close()
