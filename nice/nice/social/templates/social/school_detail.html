@@ -1,0 +1,31 @@
+{% extends "social/base.html" %}
+
+{% load static %}
+
+{% block title_block %}
+CBV: detail view
+{% endblock %}
+
+
+{% block body_block %}
+<div class ="container">
+
+    <h1>CBV: detail view</h1></br>
+    <h2>School Name: {{school_detail.name}}</h2>
+    <h4>Principal: {{school_detail.principal}}</h4>
+
+    {% with school_detail.students.all as students%}
+    <ol>
+    {% for student in students %}
+        <li>{{student}}</li>
+    {% endfor%}
+    </ol>
+    {% endwith %}
+    <a class="btn btn-warning" href="{%url 'social:update' pk=school_detail.pk %}">Update</a>
+    <a class="btn btn-danger" href="{%url 'social:delete' pk=school_detail.pk %}">Delete</a>
+</div>
+{% endblock %}
+
+
+
+

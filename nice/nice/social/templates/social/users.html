@@ -1,0 +1,30 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>User list</title>
+        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
+        <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+       
+    </head>
+</html>
+<body>
+    <h1> Users Table</h1>
+{% if users %}
+    <table id="boxytable">
+        <th>First Name</th>
+        <th>Second Name</th>
+        <th>Email Id</th>
+    {% for u in  users %}
+     <tr>
+        <td>{{u.first_name}}</td>
+        <td>{{u.second_name}}</td>
+        <td>{{u.email_id}}</td>
+    </tr>
+    {% endfor %}
+</table>
+    
+{% endif %}
+</body>
+</html>
+    

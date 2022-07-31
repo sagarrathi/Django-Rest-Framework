@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>
+            {% block title_block %}
+            
+            {% endblock %}
+        </title>
+        <link  type="text/css" rel="stylesheet" href="{% static "social/index.css" %}">
+        <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+        <script src="{% static "bootstrap/js/bootstrap.bundle.min.js" %}"></script>     
+        <script src="{% static "jquery-3.6.0.js" %}"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+        
+    </head>
+
+{% if user.is_authenticated %}
+<h1>You have beedn logged in as {{user}}</h1>
+{% endif%}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy" >Col Large 4</div>
+            <div class="col-lg-4 col-md-4 boxy">Col Large 4</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 boxy">
+                <div class="row">
+                    <div class="col-md-6 boxy">Col Medium 6</div>
+                    <div class="col-md-6 boxy">Col Medium 6</div>   
+                </div>
+            </div>    
+            <div class="col-md-6 boxy">Col Medium 6 Second</div>
+        </div>
+
+    </div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+    
+            <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'social:index' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'social:forms' %}">Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'admin:index' %}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'social:list' %}">CBV</a>
+                    </li>
+
+                   
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" 
+                        id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                        UserManage
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-item" href="{%url 'social:logout' %}">Logout</a>
+                            {% else %}
+                            <a class="dropdown-item" href="{%url 'social:login' %}">Login</a>
+                            <a class="dropdown-item" href="{%url 'social:registration' %}">Registration</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-right">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{%url 'blog:blog_post_list' %}">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<body>
+    {% if user.is_authenticated %}
+    <ul>
+        <li>
+            <a href="{% url 'blog:blog_post_create' %}">Create Post</a>
+        </li>
+    
+        <li>
+            <a href="{% url 'blog:blog_post_draft_list' %}">Draft  Post</a>
+        </li>
+    
+        <li>
+            <a href="{% url 'social:logout' %}">Log Out</a>
+        </li>  
+    
+        <li>
+            <a>Welcome: {{user.username}}</a>
+        </li>
+    
+        {% else %}
+        <li>
+            <a href="{% url 'social:login' %}">Login</a>
+        </li>
+    </ul>
+    {% endif %}
+    
+{% block body_block %}
+
+
+{% endblock %}
+
+
+</body>
+<script src="{% static "social/index.js" %}" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<script>var editor = new MediumEditor('.editable');</script>
+ 
+</html>

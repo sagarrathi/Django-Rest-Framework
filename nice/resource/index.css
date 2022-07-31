@@ -1,0 +1,51 @@
+/* comments */
+li{
+    color:rgb(76, 173, 19);
+}
+
+p{
+    color:blueviolet;
+}
+
+.btn.btn-success{
+    color:chocolate;
+}
+
+.boxy {
+    background-color: blanchedalmond;
+    border: 2px solid black;
+}
+
+#game,th,td{
+      empty-cells: show;
+}
+
+#game td{
+    padding:23px;
+    border: 1px solid black;
+
+}
+
+
+.turnBlue, .turnBlue:hover, .turnBlue:active, .turnBlue:visited  {
+    color: #fff;
+    background-color: #2f3ad3 !important;
+    border-color: #2f3ad3;
+    }
+    
+
+.turnRed, .turnRed:hover, .turnRed:active, .turnRed:visited  {
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545;
+  }
+  
+.kineticgame .dot{
+    height: 70px;
+    width: 70px;
+    color:grey;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+
+}
