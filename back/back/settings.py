@@ -131,21 +131,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 auth_classes = [
     'rest_framework.authentication.SessionAuthentication',
     'api.authentication.TokenAuthentication',
-    ]
+]
 
 if not DEBUG:
-    auth_classes=[
+    auth_classes = [
         'api.authentication.TokenAuthentication'
     ]
 
 
 REST_FRAMEWORK = {
-   
+
     # To avoid recdcaltion evrywhere
-    'DEFAULT_AUTHENTICATION_CLASSES':auth_classes,
-  
+    'DEFAULT_AUTHENTICATION_CLASSES': auth_classes,
+
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ]
+    ],
+
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+
+    'PAGE_SIZE':2
 
 }

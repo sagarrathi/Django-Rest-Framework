@@ -37,7 +37,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     )
 
-    # email = serializers.EmailField(source='user.email',read_only=True)
+    email = serializers.EmailField(write_only=True)
 
     title = serializers.CharField(validators=[validate_title, validate_title_2])
 
@@ -51,6 +51,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'pk',
             'url',
             'edit_url',
+            'email',
             'title',
             'name',
             'content',
@@ -80,12 +81,13 @@ class ProductSerializer(serializers.ModelSerializer):
     #     # return f"/api/products/{obj.pk}/"
     def create(self, validated_data):
         # return Product.object.create(**validated_data) default
+        print("email field====>")
         email = validated_data.pop("email")
         obj = super().create(validated_data)
-        # email=validated_data.pop
         return obj
 
     def update(self, instance, validated_data):
+        print("validated data", validated_data)
         email = validated_data.pop("email")
         return super().update(instance, validated_data)
 
