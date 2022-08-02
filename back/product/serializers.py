@@ -12,7 +12,7 @@ from .validators import validate_title, validate_title_2
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    user=UserPublicSerializer(read_only=True)
+    owner=UserPublicSerializer(read_only=True, source='user')
     # my_user_data=serializers.SerializerMethodField(read_only=True)
     my_discount = serializers.SerializerMethodField(read_only=True)
     # url = serializers.SerializerMethodField(read_only=True)
@@ -37,7 +37,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = [
             # 'my_user_data',
-            'user',
+            'owner',
             'pk',
             'url',
             'edit_url',
