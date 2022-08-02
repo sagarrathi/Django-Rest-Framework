@@ -21,9 +21,10 @@ class UserQuerysetMixin():
 
         print(lookup_data)
         qs=super().get_queryset(*args, **kawrgs)
-        if user.is_staff:
-            return qs
-
-        print("qs==>",qs)
+        
+        #give all data to staff as they can access admin
+        # if user.is_staff:
+        #     return qs
+        # print("qs==>",qs)
 
         return qs.filter(**lookup_data) # self.user_field=self.request.user
