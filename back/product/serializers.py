@@ -10,9 +10,19 @@ from .models import Product
 from .validators import validate_title, validate_title_2
 
 
+class ProductInlineSerializer(serializers.Serializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='product-detail',
+        lookup_field='pk',
+
+    )
+    title = serializers.CharField(read_only=True)
+
+
 
 class ProductSerializer(serializers.ModelSerializer):
     owner=UserPublicSerializer(read_only=True, source='user')
+    related_products=ProductInlineSerializer(source='user.product_set.all', read_only=True, many=True)
     # my_user_data=serializers.SerializerMethodField(read_only=True)
     my_discount = serializers.SerializerMethodField(read_only=True)
     # url = serializers.SerializerMethodField(read_only=True)
@@ -41,13 +51,14 @@ class ProductSerializer(serializers.ModelSerializer):
             'pk',
             'url',
             'edit_url',
-            # 'email',
             'title',
             'name',
             'content',
             'price',
             'sale_price',
             'my_discount',
+            'related_products',
+            
         ]
 
     def validate_title(self,value):
