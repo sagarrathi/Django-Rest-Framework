@@ -19,12 +19,12 @@ class UserQuerysetMixin():
         lookup_data[self.user_filed]=user
         # lookup_data={"owner":self.request.user}
 
-        print(lookup_data)
+        # print(lookup_data)
         qs=super().get_queryset(*args, **kawrgs)
 
         # give all data to staff as they can access admin
         if self.allow_satff_view and user.is_staff:
             return qs
-        print("qs==>",qs)
+        # print("qs==>",qs)
 
         return qs.filter(**lookup_data) # self.user_field=self.request.user

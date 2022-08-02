@@ -27,7 +27,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     )
 
-    email = serializers.EmailField(write_only=True)
+    # email = serializers.EmailField(source='user.email',read_only=True)
 
     title = serializers.CharField(validators=[validate_title, validate_title_2])
 
@@ -41,7 +41,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'pk',
             'url',
             'edit_url',
-            'email',
+            # 'email',
             'title',
             'name',
             'content',

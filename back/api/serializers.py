@@ -1,4 +1,21 @@
 from rest_framework import serializers
 
+class UserProductInlineSerializer(serializers.Serializer):
+    # url = serializers.HyperlinkedIdentityField(
+    #     view_name='product-detail',
+    #     lookup_field='pk',
+
+    # )
+    title = serializers.CharField(read_only=True)
+
+
+
 class UserPublicSerializer(serializers.Serializer):
     username=serializers.CharField(read_only=True)
+    id=serializers.IntegerField(read_only=True)
+    other_product=serializers.SerializerMethodField(read_only=True)
+
+    def get_other_product(self, obj):
+        user=obj
+        my_products_qs=user.product_set.all()
+        return UserProductInlineSerializer(my_products_qs, many=True).data
