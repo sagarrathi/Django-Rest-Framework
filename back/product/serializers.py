@@ -1,11 +1,19 @@
+#Rest
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from .models import Product
 
+#Api
+from api.serializers import UserPublicSerializer
+
+#Product
+from .models import Product
 from .validators import validate_title, validate_title_2
 
 
+
 class ProductSerializer(serializers.ModelSerializer):
+    user=UserPublicSerializer(read_only=True)
+    # my_user_data=serializers.SerializerMethodField(read_only=True)
     my_discount = serializers.SerializerMethodField(read_only=True)
     # url = serializers.SerializerMethodField(read_only=True)
     url = serializers.HyperlinkedIdentityField(
@@ -28,7 +36,8 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-            # 'user',
+            # 'my_user_data',
+            'user',
             'pk',
             'url',
             'edit_url',
@@ -45,8 +54,11 @@ class ProductSerializer(serializers.ModelSerializer):
         value=str.title(value)
         return value
 
-
-    # Obj is instance of object being called
+    # def get_my_user_data(self, obj):
+    #     return {
+    #         "username":obj.user.username
+    #     }
+    # # Obj is instance of object being called
     # Thuis prevents dynamic instacne whihc then have to be sourced
 
     # def get_url(self, obj):
@@ -73,3 +85,5 @@ class ProductSerializer(serializers.ModelSerializer):
             return None
         else:
             return obj.get_discount()
+    
+    

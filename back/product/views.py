@@ -25,7 +25,8 @@ class ProductListCreateAPIView(
     generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    
+    allow_satff_view=False
+
     def perform_create(self, serializer):
         # print(serializer.validated_data)
         title = serializer.validated_data.get('title')
@@ -138,7 +139,6 @@ class ProductMixinAPIView(
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
-
 
     def get(self, request, *args, **kwargs):
         print(args, kwargs)
