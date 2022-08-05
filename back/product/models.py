@@ -1,3 +1,5 @@
+import random
+
 # Django
 from django.conf import settings
 from django.db import models
@@ -6,6 +8,8 @@ from django.db.models import Q
 
 # Create your models here.
 User =settings.AUTH_USER_MODEL #auth.user
+
+TAGS_MODELS_VALUES=['ELEC','CAR','BOAT']
 
 class ProductQuerySet(models.QuerySet):
     def is_public(self):
@@ -31,10 +35,18 @@ class Product(models.Model):
     title=models.CharField(max_length=120)
     content=models.CharField(max_length=120, null=True) 
     price=models.DecimalField(max_digits=12, decimal_places=2, default=99.99)
-
     public=models.BooleanField(default=True)
+    # publish_timestamp=models.DateField()
 
     objects=ProductManager()
+
+    def is_public(self) ->bool:
+        return self.public
+        
+    def get_tags_list(self):
+        return [random.choice(TAGS_MODELS_VALUES)]
+
+        
     @property
     def sale_price(self):
         return "%.2f" %(float(self.price) *0.8)
