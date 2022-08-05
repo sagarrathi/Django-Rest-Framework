@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Third Part apps
     'rest_framework',
     'rest_framework.authtoken',
+    #Internal Apps
     'api',
     'product',
     'search',
+  
 
 ]
 
@@ -153,3 +156,4 @@ REST_FRAMEWORK = {
     'PAGE_SIZE':2
 
 }
+
