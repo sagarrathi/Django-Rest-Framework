@@ -1,11 +1,23 @@
 from rest_framework import generics
-# Create your views here.
+from rest_framework.response import Response
+
 
 from product.models import Product
 from product.serializers import ProductSerializer
 
+from . import client
 
-class SearchListView(generics.ListAPIView):
+class SearchListView(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        query=request.GET.get('q')
+        tag=request.GET.get('tag') or None
+        
+        if not query:
+            return Response('',status=400)
+        results=client.perform_search(query, tags=tag)
+        return Response(results)
+
+class SearchListOldView(generics.ListAPIView):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
 
