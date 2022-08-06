@@ -43,6 +43,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     name= serializers.CharField(source='title', read_only=True)
 
+    body=serializers.CharField(source='content')
     class Meta:
         model = Product
         fields = [
