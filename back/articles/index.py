@@ -7,12 +7,14 @@ from .models import Article
 
 @register(Article)
 class ArtcileIndex(AlgoliaIndex):
-    should_index = 'is_public'
+#     should_index = 'is_public'
     fields = [
         'title',
         'body',
         'user',
-        'publish_date'
+        'publish_date',
+        'get_absolute_url',
+        # 'index',
     ]
     settings = {
         'searchableAttributes': ['title', 'body'],

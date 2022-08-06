@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'product',
     'search',
     #API Services
-    'algoliasearch_django'
+    'algoliasearch_django',
+    # Others app
+    'articles',
 
 
   

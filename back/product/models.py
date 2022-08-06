@@ -40,10 +40,20 @@ class Product(models.Model):
 
     objects=ProductManager()
 
+
+    @property
+    def get_absolute_url(self):
+        return f"/api/products/{self.pk}/"
+
+
+    @property
+    def path(self):
+        return f"/products/{self.pk}/"
+
     @property
     def body(self):
         return self.content
-        
+
     def is_public(self) ->bool:
         return self.public
         

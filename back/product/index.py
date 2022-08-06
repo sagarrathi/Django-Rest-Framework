@@ -11,14 +11,16 @@ class ProductIndex(AlgoliaIndex):
     should_index='is_public'
     fields=[
         'title',
-        'content',
+        'body',
         'price',
         'user',
         'public',
+        'path',
+        'get_absolute_url',
     
     ]
     settings={
-        'searchableAttributes':['title','content'], 
+        'searchableAttributes':['title','body'], 
         'attributesForFaceting': ['user', 'public']
     }
     tags='get_tags_list'
@@ -26,3 +28,9 @@ class ProductIndex(AlgoliaIndex):
 
 
 #admin.site.register(Product, ProductAdmin)
+
+
+
+
+
+
