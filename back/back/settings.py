@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,24 +139,26 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-auth_classes = [
-    'rest_framework.authentication.SessionAuthentication',
-    'api.authentication.TokenAuthentication',
-]
+# auth_classes = [
+#     # 'rest_framework.authentication.SessionAuthentication',
+#     'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     # 'api.authentication.TokenAuthentication',
+# ]
 
-if not DEBUG:
-    auth_classes = [
-        'api.authentication.TokenAuthentication'
-    ]
+# if not DEBUG:
+#     auth_classes = [
+#         'api.authentication.TokenAuthentication'
+#     ]
 
 
 REST_FRAMEWORK = {
 
     # To avoid recdcaltion evrywhere
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        # 'api.authentication.TokenAuthentications',  
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # auth_classes,
-        
+
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
@@ -172,4 +175,13 @@ REST_FRAMEWORK = {
 ALGOLIA = {
     'APPLICATION_ID': 'H2C5TPALQG',
     'API_KEY': 'ce2e23331d3cbb474fd39609f9ca3554'
+}
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1),
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+
 }
