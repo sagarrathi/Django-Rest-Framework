@@ -37,20 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Third Party apps
+    # Third Party apps
     'rest_framework',
     'rest_framework.authtoken',
-    #Internal Apps
+    'rest_framework_simplejwt',
+    # Internal Apps
     'api',
     'product',
     'search',
-    #API Services
+    # API Services
     'algoliasearch_django',
     # Others app
     'articles',
 
 
-  
+
 
 ]
 
@@ -151,15 +152,19 @@ if not DEBUG:
 REST_FRAMEWORK = {
 
     # To avoid recdcaltion evrywhere
-    'DEFAULT_AUTHENTICATION_CLASSES': auth_classes,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # auth_classes,
+        
+    ],
 
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
 
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 
-    'PAGE_SIZE':2
+    'PAGE_SIZE': 2
 
 }
 
