@@ -54,7 +54,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'email',
             'title',
             'name',
-            'content',
+            'body',
             'price',
             'sale_price',
             'my_discount',
